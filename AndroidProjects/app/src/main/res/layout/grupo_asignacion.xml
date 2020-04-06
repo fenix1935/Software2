@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2CC061"
+    tools:context=".AsignacionGrupo">
+
+    <TextView
+        android:id="@+id/textoNombreGrupoAsignado"
+        android:layout_width="128dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginBottom="140dp"
+        android:text="Grupo #"
+        android:textColor="#FFFFFF"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textoEstudianteAsignado1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/botonAplicarMod"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="73dp"
+        android:layout_marginEnd="73dp"
+        android:layout_marginBottom="57dp"
+        android:text="Aplicar a mod"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textoEstudianteAsignado4" />
+
+    <TextView
+        android:id="@+id/textoEstudianteAsignado1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:text="Estudiante"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/textoEstudianteAsignado2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textoNombreGrupoAsignado" />
+
+    <TextView
+        android:id="@+id/textoEstudianteAsignado2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Estudiante"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/textoEstudianteAsignado3"
+        app:layout_constraintStart_toStartOf="@+id/textoEstudianteAsignado1"
+        app:layout_constraintTop_toBottomOf="@+id/textoEstudianteAsignado1" />
+
+    <TextView
+        android:id="@+id/textoEstudianteAsignado3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Estudiante"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/textoEstudianteAsignado4"
+        app:layout_constraintStart_toStartOf="@+id/textoEstudianteAsignado2"
+        app:layout_constraintTop_toBottomOf="@+id/textoEstudianteAsignado2" />
+
+    <TextView
+        android:id="@+id/textoEstudianteAsignado4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="168dp"
+        android:text="Estudiante"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/botonAplicarMod"
+        app:layout_constraintStart_toStartOf="@+id/textoEstudianteAsignado3"
+        app:layout_constraintTop_toBottomOf="@+id/textoEstudianteAsignado3" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
