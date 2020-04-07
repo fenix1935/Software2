@@ -25,8 +25,12 @@ import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class Registro extends AppCompatActivity {
 
@@ -57,8 +61,6 @@ public class Registro extends AppCompatActivity {
 
     @SuppressLint("ResourceType")
     public void botonRegistrar(View view){
-        //Intent intent = new Intent(Registro.this, MainActivity.class);
-        //startActivity(intent);
         if(r1.isChecked()==true){
             tipo="Estudiante";
         }else if(r2.isChecked()==true){
@@ -67,7 +69,7 @@ public class Registro extends AppCompatActivity {
             tipo = "";
         }
         if(!Contrasena.getText().toString().equals(Contrasena2.getText().toString())){
-            Toast.makeText(this, "Las cntraseñas no coincide", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
         }else if(tipo.equals("")){
                 Toast.makeText(this, "Elija el tipo de usuario", Toast.LENGTH_SHORT).show();
         } else {
@@ -76,9 +78,10 @@ public class Registro extends AppCompatActivity {
     }
     private void guardarEstudiante(){
 
-        String email= Correo.getText().toString();
-        String pass= Contrasena.getText().toString();
-        Map<String,String> datos= new HashMap<>();
+        String email = Correo.getText().toString();
+        String pass = Contrasena.getText().toString();
+        pass = codificarContrasena(pass);
+        Map<String,String> datos = new HashMap<>();
         datos.put("usuario", email);
         datos.put("password", pass);
         datos.put("tipo", tipo);
@@ -92,8 +95,8 @@ public class Registro extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         try {
                             String estado= response.getString("Status");
-                            Toast.makeText(Registro.this, estado, Toast.LENGTH_SHORT).show();
-                            if (estado.compareTo(estado)==0){
+                            //Toast.makeText(Registro.this, estado, Toast.LENGTH_SHORT).show();
+                            if (estado.compareTo("hecho")==0){
                                 Intent intent = new Intent(Registro.this, MainActivity.class);
                                 startActivity(intent);
                             }
@@ -107,6 +110,27 @@ public class Registro extends AppCompatActivity {
                     }
                 });
 
+    }
+
+    private String codificarContrasena(String pass){
+        String hash=null;
+        String password=pass;
+        try{
+            MessageDigest sha256=MessageDigest.getInstance("SHA-256");
+            sha256.update(password.getBytes("UTF-8"));
+            byte[] digest = sha256.digest();
+            StringBuffer sb = new StringBuffer();
+            for(byte b : digest) {
+                if (b > 0 && b < 16) {
+                    sb.append("0");
+                }
+                sb.append(Integer.toHexString(b & 0xff));
+            }
+            hash=sb.toString();
+        } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return hash;
     }
 }
 

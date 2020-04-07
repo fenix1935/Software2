@@ -31,4 +31,25 @@ public class ServiceLogin {
 		}
         return Response.status(Response.Status.CREATED).entity("{\"Status\": \"Error\"}").build();
     }
+	
+	@POST
+    @Path("/loginUsuario")
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
+    public Response loginUsuario(VOUsuario vo) {
+        DAOUsuario dao = new DAOUsuario();        
+        try {        	
+			if(dao.isUser(vo) != false) {
+				VOUsuario aux = dao.getUser(vo);
+				String tipo = aux.getTipo();				
+				return Response.status(Response.Status.CREATED).entity("{\"Status\": \""+tipo+"\"}").build();
+			}else {
+				return Response.status(Response.Status.CREATED).entity("{\"Status\": \"401\"}").build();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+        return Response.status(Response.Status.CREATED).entity("{\"Status\": \"Error\"}").build();
+    }
+	
 }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="AndroidProjects/app/build/generated/source/buildConfig/debug"/>
+	<classpathentry kind="src" path="AndroidProjects/app/src/androidTest/java"/>
+	<classpathentry kind="src" path="AndroidProjects/app/src/main/java"/>
+	<classpathentry kind="src" path="AndroidProjects/app/src/test/java"/>
+	<classpathentry kind="src" path="Proyecto/src/main/java"/>
+	<classpathentry kind="lib" path="AndroidProjects/app/build/intermediates/compile_and_runtime_not_namespaced_r_class_jar/debug/R.jar"/>
+	<classpathentry kind="lib" path="AndroidProjects/app/build/intermediates/merged_java_res/debug/out.jar"/>
+	<classpathentry kind="lib" path="AndroidProjects/app/build/intermediates/project_dex_archive/debug/out/2b5def4fd867db136a5bf3e775b7fade12f27f917a33290f5130d3c2bc858167_0.jar"/>
+	<classpathentry kind="lib" path="AndroidProjects/app/build/intermediates/project_dex_archive/debug/out/2b5def4fd867db136a5bf3e775b7fade12f27f917a33290f5130d3c2bc858167_1.jar"/>
+	<classpathentry kind="lib" path="AndroidProjects/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="output" path="AndroidProjects/app/build/intermediates/javac/debug/classes"/>
+</classpath>

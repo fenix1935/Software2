@@ -18,6 +18,9 @@ import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -53,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    //autentica el usuario como profesor o estudienta, o lo rechaza
+    //autentica el usuario como profesor o estudiante, o lo rechaza
     public void botonIniciarSesion(View view){
         //valida el usuario (complementario, a espera de BBDD)
         var1= Usuario.getText().toString();
@@ -62,34 +65,32 @@ public class MainActivity extends AppCompatActivity {
     private void VerificarEst(){
         String email= Usuario.getText().toString();
         String passw= Contrasena.getText().toString();
-        AndroidNetworking.get("https://guarded-everglades-76767.herokuapp.com/VerificarUsuario.php?email="+email+"&passw="+passw).
-
-                setPriority(Priority.MEDIUM)
+        passw = codificarContrasena(passw);
+        Map<String,String> datos = new HashMap<>();
+        datos.put("usuario", email);
+        datos.put("password", passw);
+        JSONObject jsonData = new JSONObject(datos);
+        System.out.println(jsonData);
+        AndroidNetworking.post("http://192.168.1.8:8080/Proyecto/restJR/Usuario/loginUsuario")
+                .addJSONObjectBody(jsonData)
+                .setPriority(Priority.MEDIUM)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            String estado= response.getString("respuesta");
+                            String estado= response.getString("Status");
+                            if(estado.equals("Estudiante")) {
+                                Toast.makeText(MainActivity.this, estado + " logued", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(MainActivity.this, PrincipalEstudiantes.class);
+                                startActivity(intent);
+                            }else if(estado.equals("Profesor")){
+                                    Toast.makeText(MainActivity.this, estado + " logued", Toast.LENGTH_SHORT).show();
+                                    Intent intent3 = new Intent(MainActivity.this, PrincipalProfesor.class);
+                                    startActivity(intent3);
 
-                            if (estado.equals("200")){
-                                JSONObject arrayObjeto= response.getJSONObject("data");
-                                String tipe= arrayObjeto.getString("tipo");
-                                if(tipe.equals("Estudiante")) {
-
-                                    Toast.makeText(MainActivity.this, tipe + " logued", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(MainActivity.this, PrincipalEstudiantes.class);
-                                    startActivity(intent);
-                                }else{
-                                    if(tipe.equals("Profesor")){
-                                        Toast.makeText(MainActivity.this, tipe + " logued", Toast.LENGTH_SHORT).show();
-                                        Intent intent3 = new Intent(MainActivity.this, PrincipalProfesor.class);
-                                        startActivity(intent3);
-                                    }
-                                }
-                            }
-                            else{
-                                Toast.makeText(MainActivity.this, "Usuario no existe", Toast.LENGTH_SHORT).show();
+                            } else if(estado.equals("401")){
+                                Toast.makeText(MainActivity.this, "Error en usuario o contraseña", Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {
                             Toast.makeText(MainActivity.this, "Error: "+e.getMessage(),  Toast.LENGTH_SHORT).show();
@@ -98,25 +99,31 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onError(ANError anError) {
                         Toast.makeText(MainActivity.this, "Error: "+anError.getErrorDetail() , Toast.LENGTH_SHORT).show();
-
                     }
                 });
 
+        }
+    private String codificarContrasena(String pass){
+        String hash=null;
+        String password=pass;
+        try{
+            MessageDigest sha256=MessageDigest.getInstance("SHA-256");
+            sha256.update(password.getBytes("UTF-8"));
+            byte[] digest = sha256.digest();
+            StringBuffer sb = new StringBuffer();
+            for(byte b : digest) {
+                if (b > 0 && b < 16) {
+                    sb.append("0");
+                }
+                sb.append(Integer.toHexString(b & 0xff));
+            }
+            hash=sb.toString();
+        } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return hash;
     }
-
-
-
-
-
-
-
-    }
-
-
-
-
-
-
+}
 
 /**
  intent.putExtra("test",2); //envia a la clase
