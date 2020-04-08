@@ -2,7 +2,10 @@ package com.example.apbapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -54,6 +57,21 @@ public class MainActivity extends AppCompatActivity {
     public void botonIrRegistro(View view){
         Intent intent = new Intent(MainActivity.this, Registro.class);
         startActivity(intent);
+        if(isConnectedToNetwork())
+            Toast.makeText(MainActivity.this,"Buena conexión",Toast.LENGTH_SHORT).show();
+        else
+            Toast.makeText(MainActivity.this,"Please check your network connection",Toast.LENGTH_SHORT).show();
+
+        //PROBAR CONEXIÓN
+        /*ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+
+        if (networkInfo != null && networkInfo.isConnected()) {
+            // Si hay conexión a Internet en este momento
+            Toast.makeText(this, "yes", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "no", Toast.LENGTH_SHORT).show();
+        }*/
     }
 
     //autentica el usuario como profesor o estudiante, o lo rechaza
@@ -71,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         datos.put("password", passw);
         JSONObject jsonData = new JSONObject(datos);
         System.out.println(jsonData);
-        AndroidNetworking.post("http://192.168.1.8:8080/Proyecto/restJR/Usuario/loginUsuario")
+        AndroidNetworking.post("http://192.168.0.15:8080/Proyecto/restJR/Usuario/loginUsuario")
                 .addJSONObjectBody(jsonData)
                 .setPriority(Priority.MEDIUM)
                 .build()
@@ -122,6 +140,12 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         return hash;
+    }
+    public boolean isConnectedToNetwork() {
+        ConnectivityManager cm =
+                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        return netInfo != null && netInfo.isConnectedOrConnecting();
     }
 }
 
