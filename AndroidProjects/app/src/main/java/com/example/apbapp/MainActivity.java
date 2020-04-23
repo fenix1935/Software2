@@ -2,10 +2,7 @@ package com.example.apbapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -26,6 +23,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     public static String var1;
@@ -52,26 +50,10 @@ public class MainActivity extends AppCompatActivity {
         Contrasena = findViewById(R.id.textoContrasenaRegistro);
 
     }
-
     //transfiere usuario a la ventana de registro
     public void botonIrRegistro(View view){
         Intent intent = new Intent(MainActivity.this, Registro.class);
         startActivity(intent);
-        if(isConnectedToNetwork())
-            Toast.makeText(MainActivity.this,"Buena conexión",Toast.LENGTH_SHORT).show();
-        else
-            Toast.makeText(MainActivity.this,"Please check your network connection",Toast.LENGTH_SHORT).show();
-
-        //PROBAR CONEXIÓN
-        /*ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
-
-        if (networkInfo != null && networkInfo.isConnected()) {
-            // Si hay conexión a Internet en este momento
-            Toast.makeText(this, "yes", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, "no", Toast.LENGTH_SHORT).show();
-        }*/
     }
 
     //autentica el usuario como profesor o estudiante, o lo rechaza
@@ -98,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         try {
                             String estado= response.getString("Status");
+                            //Toast.makeText(MainActivity.this, estado, Toast.LENGTH_SHORT).show();
                             if(estado.equals("Estudiante")) {
                                 Toast.makeText(MainActivity.this, estado + " logued", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(MainActivity.this, PrincipalEstudiantes.class);
@@ -140,12 +123,6 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         return hash;
-    }
-    public boolean isConnectedToNetwork() {
-        ConnectivityManager cm =
-                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo netInfo = cm.getActiveNetworkInfo();
-        return netInfo != null && netInfo.isConnectedOrConnecting();
     }
 }
 

@@ -20,6 +20,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import com.example.apbapp.MainActivity;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class PrincipalEstudiantes extends AppCompatActivity {
 
     Spinner opciones;
@@ -32,7 +36,7 @@ public class PrincipalEstudiantes extends AppCompatActivity {
         opciones = (Spinner)findViewById(R.id.spinnerCursosEstudiante);
         adapter= new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item);
         opciones.setAdapter(adapter);
-        VerificarEst();
+       // VerificarEst();
         //listado, ver archivo Array en carpeta values
 
     }
@@ -47,46 +51,53 @@ public class PrincipalEstudiantes extends AppCompatActivity {
         //Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
         //Intent intent = new Intent(PrincipalEstudiantes.this, Lobby.class);
         //startActivity(intent);
-
+        MainActivity m= new MainActivity();
+        String ja= m.getVar1();
+        Toast.makeText(this, ja, Toast.LENGTH_SHORT).show();
     }
-
+/*
     private void VerificarEst(){
-        String correo=MainActivity.var1;
-        AndroidNetworking.get("https://guarded-everglades-76767.herokuapp.com/GetCurso.php?correo="+correo).
-
-                setPriority(Priority.MEDIUM)
+        String email= Usuario.getText().toString();
+        String passw= Contrasena.getText().toString();
+        passw = codificarContrasena(passw);
+        Map<String,String> datos = new HashMap<>();
+        datos.put("usuario", email);
+        datos.put("password", passw);
+        JSONObject jsonData = new JSONObject(datos);
+        System.out.println(jsonData);
+        AndroidNetworking.post("http://192.168.0.15:8080/Proyecto/restJR/Usuario/loginUsuario")
+                .addJSONObjectBody(jsonData)
+                .setPriority(Priority.MEDIUM)
                 .build()
                 .getAsJSONObject(new JSONObjectRequestListener() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            String estado= response.getString("respuesta");
+                            String estado= response.getString("Status");
+                            //Toast.makeText(MainActivity.this, estado, Toast.LENGTH_SHORT).show();
+                            if(estado.equals("Estudiante")) {
+                                Toast.makeText(MainActivity.this, estado + " logued", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(MainActivity.this, PrincipalEstudiantes.class);
+                                startActivity(intent);
+                            }else if(estado.equals("Profesor")){
+                                Toast.makeText(MainActivity.this, estado + " logued", Toast.LENGTH_SHORT).show();
+                                Intent intent3 = new Intent(MainActivity.this, PrincipalProfesor.class);
+                                startActivity(intent3);
 
-
-                            if (estado.equals("200")){
-                                JSONArray arrayCursos= response.getJSONArray("data");
-                                for(int i=0; i<arrayCursos.length();i++){
-                                     JSONObject jsonCurso= arrayCursos.getJSONObject(i);
-                                     String nombre=jsonCurso.getString("nombre");
-
-                                     adapter.add(nombre);
-                                }
-                                adapter.notifyDataSetChanged();
-                            }
-                            else{
-                                Toast.makeText(PrincipalEstudiantes.this, "Usuario no existe", Toast.LENGTH_SHORT).show();
+                            } else if(estado.equals("401")){
+                                Toast.makeText(MainActivity.this, "Error en usuario o contraseña", Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {
-                            Toast.makeText(PrincipalEstudiantes.this, "Error: "+e.getMessage(),  Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, "Error: "+e.getMessage(),  Toast.LENGTH_SHORT).show();
                         }
                     }
                     @Override
                     public void onError(ANError anError) {
-                        Toast.makeText(PrincipalEstudiantes.this, "Error: "+anError.getErrorDetail() , Toast.LENGTH_SHORT).show();
-
+                        Toast.makeText(MainActivity.this, "Error: "+anError.getErrorDetail() , Toast.LENGTH_SHORT).show();
                     }
                 });
 
     }
+    */
 
 }

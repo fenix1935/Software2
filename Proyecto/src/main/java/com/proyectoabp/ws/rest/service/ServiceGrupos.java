@@ -1,7 +1,7 @@
 package com.proyectoabp.ws.rest.service;
 
-
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.json.Json;
 import javax.json.JsonObject;
@@ -11,22 +11,32 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.xml.crypto.Data;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.codehaus.jettison.json.JSONObject;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonPrimitive;
+import com.google.protobuf.Type;
 import com.proyectoabp.ws.mod.dao.DAOGrupo;
 import com.proyectoabp.ws.mod.dao.DAOUsuario;
 import com.proyectoabp.ws.rest.vo.VOGrupos;
 import com.proyectoabp.ws.rest.vo.VOUsuario;
 
-@Path("/Usuario")
-public class ServiceLogin {
+
+
+@Path("/Grupos")
+public class ServiceGrupos {
 	@POST
-    @Path("/RegistrarUsuario")
+    @Path("/RegistrarGrupo")
     @Consumes({MediaType.APPLICATION_JSON})
     @Produces({MediaType.APPLICATION_JSON})
-    public Response registrarUsuario(VOUsuario vo) {
-        DAOUsuario dao = new DAOUsuario();        
-        try {
-			if(dao.addUser(vo)!=false) {
+    public Response registrarGrupo(VOGrupos vo) {
+        DAOGrupo dao = new DAOGrupo();        
+        try {	
+			if(dao.addGroup(vo)!=false) {
 				return Response.status(Response.Status.CREATED).entity("{\"Status\": \"hecho\"}").build();
 			}
 		} catch (SQLException e) {
@@ -35,18 +45,19 @@ public class ServiceLogin {
         return Response.status(Response.Status.CREATED).entity("{\"Status\": \"Error\"}").build();
     }
 	
+
+	
 	@POST
-    @Path("/loginUsuario")
+    @Path("/CursosProfe")
     @Consumes({MediaType.APPLICATION_JSON})
     @Produces({MediaType.APPLICATION_JSON})
-    public Response loginUsuario(VOUsuario vo) {
-        DAOUsuario dao = new DAOUsuario();        
+    public Response cursosProfe(VOGrupos vo) {
+		//System.out.println(vo.getProfesorsito());
+        DAOGrupo dao = new DAOGrupo();        
         try {        	
-			if(dao.isUser(vo) != false) {
-				VOUsuario aux = dao.getUser(vo);
-				String tipo = aux.getTipo();				
-				String nombre= aux.getUsuario();
-				return Response.status(Response.Status.CREATED).entity("{\"Status\": \""+tipo+"\",\"Nombre\": \""+nombre+"\"}").build();
+			if(dao.isGroupProfe(vo.getProfesor()) != false) {
+				String aux = (String) dao.getGroup(vo.getProfesor());
+				return Response.status(Response.Status.CREATED).entity(aux).build();
 			}else {
 				return Response.status(Response.Status.CREATED).entity("{\"Status\": \"401\"}").build();
 			}
@@ -55,5 +66,6 @@ public class ServiceLogin {
 		}
         return Response.status(Response.Status.CREATED).entity("{\"Status\": \"Error\"}").build();
     }
+    
 	
 }

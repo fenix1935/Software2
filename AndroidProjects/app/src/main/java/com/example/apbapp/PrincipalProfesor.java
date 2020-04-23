@@ -12,11 +12,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONArrayRequestListener;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.androidnetworking.interfaces.StringRequestListener;
+import com.example.vo.VOGrupos;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PrincipalProfesor extends AppCompatActivity {
 
@@ -30,47 +40,46 @@ public class PrincipalProfesor extends AppCompatActivity {
         opciones = (Spinner)findViewById(R.id.spinnerCursosProfesor);
         adapter= new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item);
         opciones.setAdapter(adapter);
-        VerificarProf();
+        CursosProfe();
     }
-
-    public void botonIrCrearCurso(View view){
+    public void botonCrear(View view) {
         Intent intent = new Intent(PrincipalProfesor.this, CrearCurso.class);
         startActivity(intent);
     }
-    private void VerificarProf(){
-        String correo=MainActivity.var1;
-        AndroidNetworking.get("https://guarded-everglades-76767.herokuapp.com/GetCursoProf.php?correo="+correo).
-
+    private void CursosProfe(){
+        MainActivity m= new MainActivity();
+        String profe=m.getVar1();
+        Map<String,String> datos = new HashMap<>();
+        datos.put("profesor", profe);
+        JSONObject jsonData = new JSONObject(datos);
+        AndroidNetworking.post("http://192.168.0.15:8080/Proyecto/restJR/Grupos/CursosProfe").
+                addJSONObjectBody(jsonData).
                 setPriority(Priority.MEDIUM)
                 .build()
-                .getAsJSONObject(new JSONObjectRequestListener() {
+                .getAsString(new StringRequestListener() {
                     @Override
-                    public void onResponse(JSONObject response) {
+                    public void onResponse(String response) {
                         try {
-                            String estado= response.getString("respuesta");
+                            Gson gson= new Gson();
 
-
-                            if (estado.equals("200")){
-                                JSONArray arrayCursos= response.getJSONArray("data");
-                                for(int i=0; i<arrayCursos.length();i++){
-                                    JSONObject jsonCurso= arrayCursos.getJSONObject(i);
-                                    String nombre=jsonCurso.getString("nombre");
-
-                                    adapter.add(nombre);
-                                }
-                                adapter.notifyDataSetChanged();
+                            ArrayList<VOGrupos> g= new ArrayList<VOGrupos>();
+                            Type userListType = (new TypeToken<ArrayList<VOGrupos>>(){}).getType();
+                            g= gson.fromJson(response, userListType);
+                            System.out.println(g.size());
+                            System.out.println(g.get(1).getNombreCurso());
+                            for(int i=0; i<g.size();i++){
+                                adapter.add(g.get(i).getNombreCurso());
                             }
-                            else{
-                                Toast.makeText(PrincipalProfesor.this, "Usuario no existe", Toast.LENGTH_SHORT).show();
-                            }
-                        } catch (JSONException e) {
+                            adapter.notifyDataSetChanged();
+
+
+                        } catch (Exception e) {
                             Toast.makeText(PrincipalProfesor.this, "Error: "+e.getMessage(),  Toast.LENGTH_SHORT).show();
                         }
                     }
                     @Override
                     public void onError(ANError anError) {
                         Toast.makeText(PrincipalProfesor.this, "Error: "+anError.getErrorDetail() , Toast.LENGTH_SHORT).show();
-
                     }
                 });
 

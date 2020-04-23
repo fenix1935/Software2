@@ -1,0 +1,53 @@
+package com.proyectoabp.ws.rest.vo;
+
+import org.codehaus.jackson.annotate.JsonProperty;
+
+
+public class VOGrupos {
+	private @JsonProperty("codigoAcceso") String codigoAcceso;
+	private @JsonProperty("nombreCurso") String nombreCurso;
+	private @JsonProperty("profesor") String profesor;
+	
+
+	public VOGrupos(String codigoAcceso, String nombreCurso, String profesor) {
+		super();
+		this.codigoAcceso = codigoAcceso;
+		this.nombreCurso = nombreCurso;
+		this.profesor = profesor;
+	}
+
+    public VOGrupos() {
+        //constructor Code
+    }
+
+	public String getCodigoAcceso() {
+		return codigoAcceso;
+	}
+
+
+	public void setCodigoAcceso(String codigoAcceso) {
+		this.codigoAcceso = codigoAcceso;
+	}
+
+
+	public String getNombreCurso() {
+		return nombreCurso;
+	}
+
+
+	public void setNombreCurso(String nombreCurso) {
+		this.nombreCurso = nombreCurso;
+	}
+
+
+	public String getProfesor() {
+		return profesor;
+	}
+
+
+	public void setProfesor(String profesor) {
+		this.profesor = profesor;
+	}
+	
+	
+}

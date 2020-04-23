@@ -6,6 +6,7 @@ public class VOUsuario {
 	private String password;
 	private String tipo;
 	
+	
 	public String getUsuario() {
 		return usuario;
 	}
@@ -26,3 +27,4 @@ public class VOUsuario {
 	}
 	
 }
+

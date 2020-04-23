@@ -75,6 +75,7 @@ public class Registro extends AppCompatActivity {
         } else {
             guardarEstudiante();
         }
+
     }
     private void guardarEstudiante(){
 
@@ -99,6 +100,7 @@ public class Registro extends AppCompatActivity {
                             if (estado.compareTo("hecho")==0){
                                 Intent intent = new Intent(Registro.this, MainActivity.class);
                                 startActivity(intent);
+                                Toast.makeText(Registro.this, "Usuario Registrado", Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {
                             Toast.makeText(Registro.this, "Error: "+e.getMessage(),  Toast.LENGTH_SHORT).show();
