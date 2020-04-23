@@ -52,8 +52,13 @@ public class DAOUsuario {
 
 				password = rs.getString("contrase");
 				temp.setPassword(password);
+<<<<<<< HEAD
 				
 				tipo=rs.getString("tipo");
+=======
+
+				tipo = rs.getString("tipo");
+>>>>>>> origin/MarcoCastellanos
 				temp.setTipo(tipo);
 
 			}

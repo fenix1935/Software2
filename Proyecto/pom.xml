@@ -94,6 +94,17 @@
 			<version>1.1</version>
 		</dependency>
 
+<<<<<<< HEAD
+=======
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20190722</version>
+		</dependency>
+
+
+
+>>>>>>> origin/MarcoCastellanos
 	</dependencies>
 
 	<build>

@@ -1,9 +1,13 @@
 package com.example.apbapp;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -14,6 +18,7 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.androidnetworking.interfaces.StringRequestListener;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -21,6 +26,7 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -71,12 +77,18 @@ public class MainActivity extends AppCompatActivity {
         datos.put("password", passw);
         JSONObject jsonData = new JSONObject(datos);
         System.out.println(jsonData);
+<<<<<<< HEAD
         AndroidNetworking.post("http://192.168.0.15:8080/Proyecto/restJR/Usuario/loginUsuario")
+=======
+        AndroidNetworking.post("http://192.168.1.3:8080/Proyecto/restJR/Usuario/loginUsuario")
+>>>>>>> origin/MarcoCastellanos
                 .addJSONObjectBody(jsonData)
                 .setPriority(Priority.MEDIUM)
                 .build()
-                .getAsJSONObject(new JSONObjectRequestListener() {
+                .getAsString(new StringRequestListener() {
+                    @RequiresApi(api = Build.VERSION_CODES.O)
                     @Override
+<<<<<<< HEAD
                     public void onResponse(JSONObject response) {
                         try {
                             String estado= response.getString("Status");
@@ -86,17 +98,42 @@ public class MainActivity extends AppCompatActivity {
                                 Intent intent = new Intent(MainActivity.this, PrincipalEstudiantes.class);
                                 startActivity(intent);
                             }else if(estado.equals("Profesor")){
+=======
+                    public void onResponse(String response) {
+                        if(response.equals("Error")){
+                            Toast.makeText(MainActivity.this, "Error en usuario o contraseña", Toast.LENGTH_SHORT).show();
+                        }else {
+                            try {
+                                String estado = "";
+                                SharedPreferences preferences = getSharedPreferences("beans", Context.MODE_PRIVATE);
+                                SharedPreferences.Editor editor = preferences.edit();
+                                editor.putString("Token",response);
+                                editor.commit();
+
+                                String[] resp = response.split("\\.");
+                                byte[] temp = Base64.getDecoder().decode(resp[1]);
+                                String cadena = new String(temp);
+                                JSONObject job = new JSONObject(cadena);
+                                estado = job.getString("tipo");
+
+                                if (estado.equals("Estudiante")) {
+                                    Toast.makeText(MainActivity.this, estado + " logued", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(MainActivity.this, PrincipalEstudiantes.class);
+                                    startActivity(intent);
+                                } else if (estado.equals("Profesor")) {
+>>>>>>> origin/MarcoCastellanos
                                     Toast.makeText(MainActivity.this, estado + " logued", Toast.LENGTH_SHORT).show();
                                     Intent intent3 = new Intent(MainActivity.this, PrincipalProfesor.class);
                                     startActivity(intent3);
 
-                            } else if(estado.equals("401")){
-                                Toast.makeText(MainActivity.this, "Error en usuario o contraseña", Toast.LENGTH_SHORT).show();
+                                }
+
+                            } catch (Exception e) {
+                                Toast.makeText(MainActivity.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                             }
-                        } catch (JSONException e) {
-                            Toast.makeText(MainActivity.this, "Error: "+e.getMessage(),  Toast.LENGTH_SHORT).show();
                         }
                     }
+
                     @Override
                     public void onError(ANError anError) {
                         Toast.makeText(MainActivity.this, "Error: "+anError.getErrorDetail() , Toast.LENGTH_SHORT).show();
