@@ -36,21 +36,20 @@ public class AgregarCurso extends AppCompatActivity {
     public void botonAgregarCurso(View view){
 
         String cod = Codigo.getText().toString(); //obtiene el texto en el capo de "Codigo"
-        guardarEstudiante();
-        Intent intent = new Intent(AgregarCurso.this, PrincipalEstudiantes.class);
-        startActivity(intent);
+        guardarCurso();
 
     }
-    private void guardarEstudiante(){
+    private void guardarCurso(){
 
-        String correo=MainActivity.var1;
-        String curso=Codigo.getText().toString();
-        Map<String,String> datos= new HashMap<>();
-        datos.put("correo", correo);
-        datos.put("curso", curso);
+        String email = MainActivity.var1;
+        String acceso = Codigo.getText().toString();
+        //pass = codificarContrasena(pass);
+        Map<String,String> datos = new HashMap<>();
+        datos.put("estudiante", email);
+        datos.put("acceso", acceso);
+        //datos.put("tipo", tipo);
         JSONObject jsonData = new JSONObject(datos);
-
-        AndroidNetworking.post("https://guarded-everglades-76767.herokuapp.com/AgregarCursoEst.php").
+        AndroidNetworking.post(MainActivity.port+":8080/Proyecto/restJR/Grupos/AgregarCurso").
                 addJSONObjectBody(jsonData).
                 setPriority(Priority.MEDIUM)
                 .build()
@@ -58,8 +57,13 @@ public class AgregarCurso extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
-                            String estado= response.getString("estado");
-                            Toast.makeText(AgregarCurso.this, estado, Toast.LENGTH_SHORT).show();
+                            String estado= response.getString("Status");
+                            //Toast.makeText(Registro.this, estado, Toast.LENGTH_SHORT).show();
+                            if (estado.compareTo("hecho")==0){
+                                Intent intent = new Intent(AgregarCurso.this, PrincipalEstudiantes.class);
+                                startActivity(intent);
+                                Toast.makeText(AgregarCurso.this, "Curso Guardado", Toast.LENGTH_SHORT).show();
+                            }
                         } catch (JSONException e) {
                             Toast.makeText(AgregarCurso.this, "Error: "+e.getMessage(),  Toast.LENGTH_SHORT).show();
                         }
@@ -67,7 +71,6 @@ public class AgregarCurso extends AppCompatActivity {
                     @Override
                     public void onError(ANError anError) {
                         Toast.makeText(AgregarCurso.this, "Error: "+anError.getErrorDetail() , Toast.LENGTH_SHORT).show();
-
                     }
                 });
 

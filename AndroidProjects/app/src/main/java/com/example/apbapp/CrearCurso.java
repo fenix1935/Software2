@@ -41,9 +41,6 @@ public class CrearCurso extends AppCompatActivity {
     }
     public void ButonCrear(View view){
         crearC();
-        Intent intent = new Intent(CrearCurso.this, PrincipalProfesor.class);
-        startActivity(intent);
-
 
     }
     public void ButonUpdate(View view){
@@ -79,7 +76,7 @@ public class CrearCurso extends AppCompatActivity {
         datos.put("nombreCurso", nombre1);
         datos.put("profesor", profe);
         JSONObject jsonData = new JSONObject(datos);
-        AndroidNetworking.post("http://192.168.0.15:8080/Proyecto/restJR/Grupos/RegistrarGrupo").
+        AndroidNetworking.post(MainActivity.port+":8080/Proyecto/restJR/Grupos/RegistrarGrupo").
                 addJSONObjectBody(jsonData).
                 setPriority(Priority.MEDIUM)
                 .build()

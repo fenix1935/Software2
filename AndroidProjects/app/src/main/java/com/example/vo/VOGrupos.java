@@ -2,13 +2,15 @@ package com.example.vo;
 
 
 public class VOGrupos {
+    private String codigo;
     private String codigoAcceso;
     private String nombreCurso;
     private String profesor;
 
 
-    public VOGrupos(String codigoAcceso, String nombreCurso, String profesor) {
+    public VOGrupos(String codigo,String codigoAcceso, String nombreCurso, String profesor) {
         super();
+        this.codigo=codigo;
         this.codigoAcceso = codigoAcceso;
         this.nombreCurso = nombreCurso;
         this.profesor = profesor;
@@ -16,6 +18,14 @@ public class VOGrupos {
 
     public VOGrupos() {
         //constructor Code
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
     public String getCodigoAcceso() {

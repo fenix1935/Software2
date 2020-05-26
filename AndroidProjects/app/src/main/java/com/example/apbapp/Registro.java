@@ -87,11 +87,7 @@ public class Registro extends AppCompatActivity {
         datos.put("password", pass);
         datos.put("tipo", tipo);
         JSONObject jsonData = new JSONObject(datos);
-<<<<<<< HEAD
-        AndroidNetworking.post("http://192.168.0.15:8080/Proyecto/restJR/Usuario/RegistrarUsuario").
-=======
-        AndroidNetworking.post("http://192.168.1.3:8080/Proyecto/restJR/Usuario/RegistrarUsuario").
->>>>>>> origin/MarcoCastellanos
+        AndroidNetworking.post(MainActivity.port+":8080/Proyecto/restJR/Usuario/RegistrarUsuario").
                 addJSONObjectBody(jsonData).
                 setPriority(Priority.MEDIUM)
                 .build()

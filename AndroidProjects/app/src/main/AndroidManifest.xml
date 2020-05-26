@@ -12,6 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Registro"/>
+        <activity android:name=".links"/>
+        <activity android:name=".PresentadorProblematica"/>
+        <activity android:name=".PresentadorPalabras"/>
+        <activity android:name=".PresentadorIdeas"/>
+        <activity android:name=".PresentadorHipotesis"/>
         <activity android:name=".Admin"/>
         <activity android:name=".AdminGrupo"/>
         <activity android:name=".AgregarCurso"/>
@@ -27,10 +32,8 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
-
 </manifest>
