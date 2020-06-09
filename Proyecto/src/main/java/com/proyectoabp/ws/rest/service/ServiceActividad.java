@@ -69,5 +69,23 @@ public class ServiceActividad {
 		}
         return Response.status(Response.Status.CREATED).entity("{\"Status\": \"Error\"}").build();
     }
+	@POST
+    @Path("/CrearProblema")
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
+    public Response crear(VOActividad vo) {
+        DAOActividad dao = new DAOActividad();        
+        try {
+			if(dao.crearProblema(vo)!=false) {
+					return Response.status(Response.Status.CREATED).entity("{\"Status\": \"hecho\"}").build();
+				
+			}else {
+				return Response.status(Response.Status.CREATED).entity("{\"Status\": \"Error\"}").build();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+        return Response.status(Response.Status.CREATED).entity("{\"Status\": \"Error\"}").build();
+    }
     
 }

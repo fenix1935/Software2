@@ -183,7 +183,24 @@ public class ServiceSesiones {
 			}
 	        return Response.status(Response.Status.CREATED).entity("{\"Status\": \"Error\"}").build();
 	    }
-		
+
+		@POST
+	    @Path("/Conseguir")
+	    @Consumes({MediaType.APPLICATION_JSON})
+	    @Produces({MediaType.APPLICATION_JSON})
+	    public Response si(VOSesiones vo) {
+	        DAOSesiones dao = new DAOSesiones();        
+	        
+	        try {
+	        	String h= (String) dao.conseguir(vo);
+	        	return Response.status(Response.Status.CREATED).entity("{\"Status\": \""+h+"\"}").build();
+	        
+						
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+	        return Response.status(Response.Status.CREATED).entity("{\"Status\": \"Error\"}").build();
+	    }
 		
 }
 

@@ -159,7 +159,7 @@ public class AsignacionTema extends AppCompatActivity {
 
     public void iniciar(View view){
        // actualizar();
-        //pasarGeneral();
+        pasarGeneral();
         elegir();
 
         poss=opciones.getSelectedItem().toString();
@@ -167,6 +167,11 @@ public class AsignacionTema extends AppCompatActivity {
        int jff=opciones.getSelectedItemPosition();
         Toast.makeText(this, "num: "+jff, Toast.LENGTH_SHORT).show();
 
-        //Toast.makeText(this, "este"+poss, Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(AsignacionTema.this, Admin.class);
+        startActivity(intent);
+    }
+    public void agregar(View view){
+        Intent intent = new Intent(AsignacionTema.this, CrearTema.class);
+        startActivity(intent);
     }
 }

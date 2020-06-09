@@ -12,7 +12,7 @@
         android:layout_width="165dp"
         android:layout_height="67dp"
         android:layout_marginTop="132dp"
-        android:text="Grupo #1"
+        android:text="Grupo #?"
         android:textColor="#FFFFFF"
         android:textSize="35sp"
         android:textStyle="bold"

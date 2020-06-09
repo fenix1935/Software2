@@ -27,7 +27,7 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     public static String var1;
-    public static String port="http://192.168.1.14";
+    public static String port="http://192.168.0.4";
     EditText Usuario;
     EditText Contrasena;
 

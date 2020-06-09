@@ -99,4 +99,28 @@ public class DAOActividad {
 		}
 		return s;
 	}
+	public boolean crearProblema(VOActividad vo)  throws SQLException{
+		int result = 0;
+		PreparedStatement preparedStmt = null;
+		String query = "insert into problematica(problema, link) values(?, ?);";
+		try {
+			Connection connection = Conexion.getConenction();
+			preparedStmt = connection.prepareStatement(query);
+			preparedStmt.setString(1, vo.getProblematica());
+			preparedStmt.setString(2, vo.getUrl());
+			
+			result = preparedStmt.executeUpdate();
+			String usera = null;
+			String password = null;
+			String tipo = null;
+			connection.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if (result == 0) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 }
