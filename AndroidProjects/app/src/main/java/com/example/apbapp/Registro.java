@@ -75,6 +75,7 @@ public class Registro extends AppCompatActivity {
         } else {
             guardarEstudiante();
         }
+
     }
     private void guardarEstudiante(){
 
@@ -86,7 +87,7 @@ public class Registro extends AppCompatActivity {
         datos.put("password", pass);
         datos.put("tipo", tipo);
         JSONObject jsonData = new JSONObject(datos);
-        AndroidNetworking.post("http://192.168.1.3:8080/Proyecto/restJR/Usuario/RegistrarUsuario").
+        AndroidNetworking.post(MainActivity.port+":8080/Proyecto/restJR/Usuario/RegistrarUsuario").
                 addJSONObjectBody(jsonData).
                 setPriority(Priority.MEDIUM)
                 .build()
@@ -99,6 +100,7 @@ public class Registro extends AppCompatActivity {
                             if (estado.compareTo("hecho")==0){
                                 Intent intent = new Intent(Registro.this, MainActivity.class);
                                 startActivity(intent);
+                                Toast.makeText(Registro.this, "Usuario Registrado", Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {
                             Toast.makeText(Registro.this, "Error: "+e.getMessage(),  Toast.LENGTH_SHORT).show();

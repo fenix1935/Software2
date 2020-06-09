@@ -4,83 +4,78 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2CC061"
+    android:background="#3889B8"
     tools:context=".AsignacionGrupo">
 
     <TextView
         android:id="@+id/textoNombreGrupoAsignado"
-        android:layout_width="128dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginBottom="140dp"
-        android:text="Grupo #"
+        android:layout_width="165dp"
+        android:layout_height="67dp"
+        android:layout_marginTop="132dp"
+        android:text="Grupo #1"
         android:textColor="#FFFFFF"
         android:textSize="35sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textoEstudianteAsignado1"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textoNombreGrupoAsignado2"
+        android:layout_width="335dp"
+        android:layout_height="83dp"
+        android:layout_marginTop="24dp"
+        android:text="Sesion"
+        android:textAlignment="center"
+        android:textColor="#B0D6FA"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.459"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/botonAplicarMod"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="246dp"
+        android:layout_height="56dp"
         android:layout_marginStart="73dp"
         android:layout_marginEnd="73dp"
-        android:layout_marginBottom="57dp"
-        android:text="Aplicar a mod"
+        android:layout_marginBottom="108dp"
+        android:onClick="botonRegistrar1"
+        android:text="UNIRSE"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textoEstudianteAsignado4" />
+        app:layout_constraintTop_toBottomOf="@+id/_dynamic" />
 
-    <TextView
-        android:id="@+id/textoEstudianteAsignado1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:text="Estudiante"
-        android:textColor="#FFFFFF"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/textoEstudianteAsignado2"
+    <Button
+        android:id="@+id/botonAplicarMod2"
+        android:layout_width="246dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="73dp"
+        android:layout_marginEnd="73dp"
+        android:onClick="botonEliminar1"
+        android:text="SALIR"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.473"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/botonAplicarMod" />
+
+    <ListView
+        android:id="@+id/listG"
+        android:layout_width="329dp"
+        android:layout_height="338dp"
+        android:layout_marginTop="44dp"
+        android:cacheColorHint="#FFFFFF"
+        android:textAlignment="center"
+        android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textoNombreGrupoAsignado" />
-
-    <TextView
-        android:id="@+id/textoEstudianteAsignado2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Estudiante"
-        android:textColor="#FFFFFF"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/textoEstudianteAsignado3"
-        app:layout_constraintStart_toStartOf="@+id/textoEstudianteAsignado1"
-        app:layout_constraintTop_toBottomOf="@+id/textoEstudianteAsignado1" />
-
-    <TextView
-        android:id="@+id/textoEstudianteAsignado3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Estudiante"
-        android:textColor="#FFFFFF"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/textoEstudianteAsignado4"
-        app:layout_constraintStart_toStartOf="@+id/textoEstudianteAsignado2"
-        app:layout_constraintTop_toBottomOf="@+id/textoEstudianteAsignado2" />
-
-    <TextView
-        android:id="@+id/textoEstudianteAsignado4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="168dp"
-        android:text="Estudiante"
-        android:textColor="#FFFFFF"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/botonAplicarMod"
-        app:layout_constraintStart_toStartOf="@+id/textoEstudianteAsignado3"
-        app:layout_constraintTop_toBottomOf="@+id/textoEstudianteAsignado3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

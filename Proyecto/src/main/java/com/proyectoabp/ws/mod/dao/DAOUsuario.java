@@ -52,10 +52,12 @@ public class DAOUsuario {
 
 				password = rs.getString("contrase");
 				temp.setPassword(password);
-
-				tipo = rs.getString("tipo");
+				
+				tipo=rs.getString("tipo");
 				temp.setTipo(tipo);
+
 			}
+			connection.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -78,6 +80,7 @@ public class DAOUsuario {
 			if (rs.next()) {
 				temp = true;
 			}
+			connection.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
