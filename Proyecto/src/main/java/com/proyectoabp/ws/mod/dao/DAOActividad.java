@@ -30,7 +30,7 @@ public class DAOActividad {
 			String profe = null;
 			while (rs.next()) {
 				code=rs.getString("problema");
-				est=rs.getString("num");
+				est=rs.getString("link");
 				//est= rs.getString("estudiante");
 				//nombre = rs.getString("grupo");
 				//profe = rs.getString("numeroGrupo");
@@ -44,15 +44,15 @@ public class DAOActividad {
 		return h;
 	}
 	
-	public boolean updatePro(VOActividad vo)  throws SQLException{
+	public boolean elegirPro(VOActividad vo)  throws SQLException{
 		int result = 0;
 		PreparedStatement preparedStmt = null;
-		String query = "update problematica set num=1 where problema=?";
+		String query = "insert into problematica2(problema, link) values(?, ?);";
 		try {
 			Connection connection = Conexion.getConenction();
 			preparedStmt = connection.prepareStatement(query);
 			preparedStmt.setString(1, vo.getProblematica());
-			//preparedStmt.setString(1, vo.getCodeito());
+			preparedStmt.setString(2, vo.getUrl());
 			
 			result = preparedStmt.executeUpdate();
 			String usera = null;
@@ -68,11 +68,13 @@ public class DAOActividad {
 			return true;
 		}
 	}
-	public String getPro(VOActividad vo) throws SQLException {
+
+	
+	public VOActividad getPro(VOActividad vo){
 		//boolean temp = false;
-		String s=null;
+		VOActividad s=null;
 		PreparedStatement preparedStmt = null;
-		String query = "SELECT * FROM problematica WHERE num=1";
+		String query = "SELECT * from problematica2 order by codigon DESC LIMIT 1";
 		try {
 			Connection connection = Conexion.getConenction();
 			preparedStmt = connection.prepareStatement(query);
@@ -83,7 +85,13 @@ public class DAOActividad {
 			String password = null;
 			String tipo = null;
 			if (rs.next()) {
-				s=rs.getString("problema");
+				
+				s= new VOActividad();
+				usera=rs.getString("problema");
+				s.setProblematica(usera);
+				
+				password=rs.getString("link");
+				s.setUrl(password);
 			}
 			connection.close();
 		} catch (Exception e) {

@@ -266,6 +266,7 @@ public class AsignacionGrupo extends AppCompatActivity {
                                 if(estado2.equals("si")) {
                                     Intent intent = new Intent(AsignacionGrupo.this, PresentadorProblematica.class);
                                     startActivity(intent);
+                                    //Código importante.
                                     handler.removeCallbacksAndMessages(null);
                                 }
                             } else {

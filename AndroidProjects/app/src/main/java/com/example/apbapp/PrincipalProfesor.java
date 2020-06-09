@@ -41,7 +41,7 @@ public class PrincipalProfesor extends AppCompatActivity {
     private ArrayAdapter<String> adapter;
     public static String cursoE;
     public static ArrayList<VOGrupos> g;
-    private final int TIEMPO = 5000; // 1 Second
+    private final int TIEMPO = 1000; // 1 Second
     private Handler handler = new Handler();
     public static int posicion;
 
@@ -73,7 +73,6 @@ public class PrincipalProfesor extends AppCompatActivity {
     public void ejecutarTarea() {
         handler.postDelayed(new Runnable() {
             public void run() {
-
                 // función a ejecutar
                 //Toast.makeText(PrincipalProfesor.this, "asd", Toast.LENGTH_SHORT).show(); // función para refrescar la ubicación del conductor, creada en otra línea de código
                 CursosProfe();
