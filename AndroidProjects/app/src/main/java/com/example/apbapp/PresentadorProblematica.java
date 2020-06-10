@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +32,7 @@ public class PresentadorProblematica extends AppCompatActivity{
     private Button btn;
     TextView prob;
     String h;
+    EditText texto;
     private String problem;
     private String link;
     public static ArrayList<VOActividad> g;
@@ -41,6 +43,7 @@ public class PresentadorProblematica extends AppCompatActivity{
         h = AsignacionTema.poss;
         prob = (TextView) findViewById(R.id.TxVMostrarProblematica);
         btn = (Button) findViewById(R.id.buttonProblematica);
+        texto=(EditText) findViewById(R.id.ETxProblematica);
         VerificarEst();
 
         prob.setText(problem);
@@ -51,15 +54,14 @@ public class PresentadorProblematica extends AppCompatActivity{
                 Intent intent = new Intent(PresentadorProblematica.this, PresentadorIdeas.class);
                 startActivity(intent);
                 //Toast.makeText(PresentadorProblematica.this, h, Toast.LENGTH_SHORT).show();
+                Subir();
             }
         });
     }
 
         private void VerificarEst(){
-
             Map<String,String> datos = new HashMap<>();
             datos.put("problematica", "0");
-
             JSONObject jsonData = new JSONObject(datos);
             System.out.println(jsonData);
             AndroidNetworking.post(MainActivity.port+":8080/Proyecto/restJR/Actividad/GetProblema")
@@ -86,7 +88,41 @@ public class PresentadorProblematica extends AppCompatActivity{
                         }
                     });
         }
+public void Subir(){
+        String texti= texto.getText().toString();
+    Map<String,String> datos = new HashMap<>();
+    datos.put("problem", texti);
+    datos.put("num1", AsignacionGrupo.numG);
+    JSONObject jsonData = new JSONObject(datos);
+    System.out.println(jsonData);
+    AndroidNetworking.post(MainActivity.port+":8080/Proyecto/restJR/Activity/ProblemaSubir")
+            .addJSONObjectBody(jsonData)
+            .setPriority(Priority.MEDIUM)
+            .build()
+            .getAsJSONObject(new JSONObjectRequestListener() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    try {
+                        String estado=response.getString("Status");
+                        if(estado.equals("hecho")){
+                            Toast.makeText(PresentadorProblematica.this, "subido", Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+                            Toast.makeText(PresentadorProblematica.this, "no", Toast.LENGTH_SHORT).show();
+                        }
 
+
+
+                    } catch (JSONException e) {
+                        Toast.makeText(PresentadorProblematica.this, "Error: "+e.getMessage(),  Toast.LENGTH_SHORT).show();
+                    }
+                }
+                @Override
+                public void onError(ANError anError) {
+                    Toast.makeText(PresentadorProblematica.this, "Error: "+anError.getErrorDetail() , Toast.LENGTH_SHORT).show();
+                }
+            });
+}
 
 
 }

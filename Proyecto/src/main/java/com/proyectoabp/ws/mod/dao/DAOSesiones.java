@@ -99,7 +99,7 @@ public class DAOSesiones {
 		Gson gson= new Gson();
 		ArrayList<VOSesiones> grupos= new ArrayList<VOSesiones>();
 		PreparedStatement preparedStmt = null;
-		String query = "select * from sesiones where grupo=? and numeroGrupo=?";
+		String query = "select * from sesiones where grupo=? and numeroGrupo=? and numeroGrupo>0 and numeroGrupo<5";
 		try {
 			Connection connection = Conexion.getConenction();
 			preparedStmt = connection.prepareStatement(query);

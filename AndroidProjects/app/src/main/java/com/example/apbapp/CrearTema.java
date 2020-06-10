@@ -50,7 +50,7 @@ public class CrearTema extends AppCompatActivity {
         datos.put("url", urs);
         //datos.put("tipo", tipo);
         JSONObject jsonData = new JSONObject(datos);
-        AndroidNetworking.post(MainActivity.port+":8080/Proyecto/restJR/Sesion/CrearProblema").
+        AndroidNetworking.post(MainActivity.port+":8080/Proyecto/restJR/Actividad/CrearProblema").
                 addJSONObjectBody(jsonData).
                 setPriority(Priority.MEDIUM)
                 .build()
@@ -61,7 +61,7 @@ public class CrearTema extends AppCompatActivity {
                             String estado= response.getString("Status");
                             //Toast.makeText(Registro.this, estado, Toast.LENGTH_SHORT).show();
                             if (estado.compareTo("hecho")==0){
-                                Intent intent = new Intent(CrearTema.this, PrincipalEstudiantes.class);
+                                Intent intent = new Intent(CrearTema.this, AsignacionTema.class);
                                 startActivity(intent);
                                 Toast.makeText(CrearTema.this, "Tema Guardado", Toast.LENGTH_SHORT).show();
                             }
@@ -74,7 +74,6 @@ public class CrearTema extends AppCompatActivity {
                         Toast.makeText(CrearTema.this, "Error: "+anError.getErrorDetail() , Toast.LENGTH_SHORT).show();
                     }
                 });
-
     }
 
 }
