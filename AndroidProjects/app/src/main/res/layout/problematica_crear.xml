@@ -5,49 +5,66 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#3889B8"
-    tools:context=".AgregarCurso">
+    tools:context=".CrearTema">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="66dp"
-        android:text="Ingresa a un nuevo curso"
+        android:layout_marginTop="108dp"
+        android:text="CREAR TEMÁTICA"
         android:textColor="#FFFFFF"
         android:textSize="35sp"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/botonAgregarCurso"
+        android:id="@+id/botonOK"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="160dp"
-        android:onClick="botonAgregarCurso"
+        android:layout_marginBottom="161dp"
         android:text="OK"
         android:textSize="25sp"
+        android:onClick="botonCrearProblema"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textoIntroducirURL"
+        app:layout_constraintVertical_bias="1.0" />
 
     <EditText
-        android:id="@+id/textoIntroducirCodigo"
+        android:id="@+id/textoIntroducirTitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="26dp"
-        android:layout_marginTop="308dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="232dp"
         android:background="#FFFFFF"
         android:ems="10"
-        android:hint="Codigo del grupo"
+        android:hint="Título"
         android:inputType="textPersonName"
         android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="30sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/textoIntroducirURL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="60dp"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:hint="URL"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textoIntroducirTitulo" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

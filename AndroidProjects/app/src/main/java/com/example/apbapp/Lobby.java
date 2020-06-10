@@ -77,27 +77,34 @@ TextView G1;
                 prueba2=0;
                 prueba3=0;
                 prueba4=0;
-                for(int i=0; i<g2.size();i++){
-                    int cont= Integer.parseInt(g2.get(i).getGnum());
-                    switch (cont){
+                if (g2.size()==0){
+                    G1.setText("Grupo 1: "+prueba1+"/4");
+                    G2.setText("Grupo 2: "+prueba2+"/4");
+                    G3.setText("Grupo 3: "+prueba3+"/4");
+                    G4.setText("Grupo 4: "+prueba4+"/4");
+                }
+                else{
+                for(int i=0; i<g2.size();i++) {
+                    int cont = Integer.parseInt(g2.get(i).getGnum());
+                    switch (cont) {
                         case 1:
                             prueba1++;
-                            G1.setText("Grupo 1: "+prueba1+"/4");
+                            G1.setText("Grupo 1: " + prueba1 + "/4");
                             break;
                         case 2:
                             prueba2++;
-                            G2.setText("Grupo 2: "+prueba2+"/4");
+                            G2.setText("Grupo 2: " + prueba2 + "/4");
                             break;
                         case 3:
                             prueba3++;
-                            G3.setText("Grupo 3: "+prueba3+"/4");
+                            G3.setText("Grupo 3: " + prueba3 + "/4");
                             break;
                         case 4:
                             prueba4++;
-                            G4.setText("Grupo 4: "+prueba4+"/4");
+                            G4.setText("Grupo 4: " + prueba4 + "/4");
                             break;
-
                     }
+                }
                 }
                 //pasar1();
                 handler.postDelayed(this, TIEMPO);
@@ -219,7 +226,6 @@ TextView G1;
     }
     public void botonempezar(View view){
 verify();
-
 
     }
 }

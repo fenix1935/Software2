@@ -33,6 +33,7 @@ import java.util.Map;
 public class AsignacionGrupo extends AppCompatActivity {
  ListView opciones;
  TextView textoNombreGrupoAsignado2;
+    TextView textoNombreGrupoAsignado;
  private static String state="No disponible";
     private final int TIEMPO = 2000; // 1 Second
     private Handler handler = new Handler();
@@ -40,11 +41,13 @@ public class AsignacionGrupo extends AppCompatActivity {
     public static ArrayList<VOSesion> g1;
     private String estado1="0";
     private String estado2="no";
+    public static String numG="0";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.grupo_asignacion);
         textoNombreGrupoAsignado2=findViewById(R.id.textoNombreGrupoAsignado2);
+        textoNombreGrupoAsignado=findViewById(R.id.textoNombreGrupoAsignado);
         textoNombreGrupoAsignado2.setText(PrincipalEstudiantes.cursoCode+" "+state);
 
         opciones = (ListView) findViewById(R.id.listG);
@@ -70,6 +73,7 @@ public class AsignacionGrupo extends AppCompatActivity {
                 // función a ejecutar
                 //Toast.makeText(PrincipalProfesor.this, "asd", Toast.LENGTH_SHORT).show(); // función para refrescar la ubicación del conductor, creada en otra línea de código
                 update(PrincipalEstudiantes.posicion);
+                update2();
                 grupoGet1();
                 pasar1();
                 handler.postDelayed(this, TIEMPO);
@@ -83,6 +87,7 @@ public class AsignacionGrupo extends AppCompatActivity {
         String profe= PrincipalEstudiantes.g.get(PrincipalEstudiantes.posicion).getCodigoGrupo();
         Map<String,String> datos = new HashMap<>();
         datos.put("grupoS", profe);
+        datos.put("Gnum",numG);
         JSONObject jsonData = new JSONObject(datos);
         AndroidNetworking.post(MainActivity.port+":8080/Proyecto/restJR/Sesion/SesionDatos").
                 addJSONObjectBody(jsonData).
@@ -198,7 +203,6 @@ public class AsignacionGrupo extends AppCompatActivity {
     }
 
     private void update(int pos) {
-
         String email = MainActivity.var1;
         String grup = PrincipalEstudiantes.g.get(pos).getCodigoGrupo();
         //pass = codificarContrasena(pass);
@@ -240,6 +244,49 @@ public class AsignacionGrupo extends AppCompatActivity {
                     }
                 });
     }
+    private void update2() {
+        String email = MainActivity.var1;
+        //String grup = PrincipalEstudiantes.g.get(pos).getCodigoGrupo();
+        //pass = codificarContrasena(pass);
+        Map<String, String> datos = new HashMap<>();
+        //datos.put("estudianteS", email);
+        datos.put("estudianteS", email);
+        JSONObject jsonData = new JSONObject(datos);
+        AndroidNetworking.post(MainActivity.port+":8080/Proyecto/restJR/Sesion/Conseguir").
+                addJSONObjectBody(jsonData).
+                setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            String estado = response.getString("Status");
+                            //Toast.makeText(Registro.this, estado, Toast.LENGTH_SHORT).show();
+                            if (estado.compareTo("null") == 0) {
+                                //Intent intent = new Intent(PrincipalEstudiantes.this, AsignacionGrupo.class);
+                                //startActivity(intent);
+                                //Toast.makeText(AsignacionGrupo.this, "Usuario Eliminado", Toast.LENGTH_SHORT).show();
+                                //state="Disponible";
+                                textoNombreGrupoAsignado.setText("Grupo #?");
+                            } else {
+                                //Intent intent = new Intent(PrincipalEstudiantes.this, AsignacionGrupo.class);
+                                //startActivity(intent);
+                                //Toast.makeText(AsignacionGrupo.this, "No se puede eliminar", Toast.LENGTH_SHORT).show();
+                                //state="No Disponible";
+                                numG=estado;
+                                textoNombreGrupoAsignado.setText("Grupo #"+estado);
+                            }
+                        } catch (JSONException e) {
+                            Toast.makeText(AsignacionGrupo.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        Toast.makeText(AsignacionGrupo.this, "Error: " + anError.getErrorDetail(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
     public void pasar1(){
         //String email = MainActivity.var1;
         //String grup = PrincipalProfesor.g.get(PrincipalProfesor.posicion).getCodigo();
@@ -266,6 +313,7 @@ public class AsignacionGrupo extends AppCompatActivity {
                                 if(estado2.equals("si")) {
                                     Intent intent = new Intent(AsignacionGrupo.this, PresentadorProblematica.class);
                                     startActivity(intent);
+                                    //Código importante.
                                     handler.removeCallbacksAndMessages(null);
                                 }
                             } else {
@@ -332,5 +380,4 @@ public class AsignacionGrupo extends AppCompatActivity {
     public void botonEliminar1(View view){
         delite(PrincipalEstudiantes.posicion);
     }
-
 }

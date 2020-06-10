@@ -47,9 +47,9 @@ public class links extends AppCompatActivity {
         Buscar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Uri webpage = Uri.parse("https://www.google.com");
-                Intent webIntent = new Intent(Intent.ACTION_VIEW, webpage);
-                startActivity(webIntent);
+
+                Intent intent = new Intent(links.this, PresentadorIdeas2.class);
+                startActivity(intent);
             }
         });
     }

@@ -39,13 +39,18 @@ public class DAOSesiones {
 	public boolean addSesion(VOSesiones vo)  throws SQLException{
 		int result = 0;
 		PreparedStatement preparedStmt = null;
-		String query = "insert into sesiones (estudiante, grupo, numeroGrupo) values (?, ?,?)";
+		String query = "insert into sesiones(estudiante, grupo, numeroGrupo) values (?, ?,?)";
 		try {
+			
+			int valorEntero = (int) Math.floor(Math.random()*(4-1+1)+1);
+			 String numCadena= String.valueOf(valorEntero);
+				 //System.out.println(valorEntero);
+			 
 			Connection connection = Conexion.getConenction();
 			preparedStmt = connection.prepareStatement(query);
 			preparedStmt.setString(1, vo.getEstudianteS());
 			preparedStmt.setString(2, vo.getGrupoS());
-			preparedStmt.setString(3, "1");
+			preparedStmt.setString(3, numCadena);
 			
 			result = preparedStmt.executeUpdate();
 			String usera = null;
@@ -61,16 +66,45 @@ public class DAOSesiones {
 			return true;
 		}
 	}
+	
+	
+	
+	
+	public String conseguir(VOSesiones vo) throws SQLException {
+		//boolean temp = false;
+		String s=null;
+		PreparedStatement preparedStmt = null;
+		String query = "select * from sesiones where estudiante=?";
+		try {
+			Connection connection = Conexion.getConenction();
+			preparedStmt = connection.prepareStatement(query);
+			preparedStmt.setString(1, vo.getEstudianteS());
+			//preparedStmt.setString(2, vo.getPassword());
+			ResultSet rs = preparedStmt.executeQuery();
+			String usera = null;
+			String password = null;
+			String tipo = null;
+			if (rs.next()) {
+				s=rs.getString("numeroGrupo");
+			}
+			connection.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return s;
+	}	
+	
 	public String getSesiones(VOSesiones vo) {
 		String h=null;
 		Gson gson= new Gson();
 		ArrayList<VOSesiones> grupos= new ArrayList<VOSesiones>();
 		PreparedStatement preparedStmt = null;
-		String query = "select * from sesiones where grupo=? and numeroGrupo>0 and numeroGrupo<5";
+		String query = "select * from sesiones where grupo=? and numeroGrupo=? and numeroGrupo>0 and numeroGrupo<5";
 		try {
 			Connection connection = Conexion.getConenction();
 			preparedStmt = connection.prepareStatement(query);
 			preparedStmt.setString(1, vo.getGrupoS());
+			preparedStmt.setString(2, vo.getGnum());
 			ResultSet rs = preparedStmt.executeQuery();
 			String code=null;
 			String est= null;

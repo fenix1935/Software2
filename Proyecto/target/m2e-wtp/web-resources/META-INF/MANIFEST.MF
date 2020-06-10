@@ -1,13 +1,5 @@
-<<<<<<< HEAD
-Manifest-Version: 1.0
-Built-By: bortackar
-Build-Jdk: 11.0.7
-Created-By: Maven Integration for Eclipse
-
-=======
 Manifest-Version: 1.0
 Built-By: ASUS
 Build-Jdk: 1.8.0_241
 Created-By: Maven Integration for Eclipse
 
->>>>>>> origin/LuisLara

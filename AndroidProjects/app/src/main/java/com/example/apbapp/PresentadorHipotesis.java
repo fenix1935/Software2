@@ -14,7 +14,17 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class PresentadorHipotesis extends AppCompatActivity {
@@ -38,7 +48,6 @@ public class PresentadorHipotesis extends AppCompatActivity {
             row.addView(Nideas);
             lista.addView(row);
         }
-
     }
 
 
@@ -55,7 +64,9 @@ public class PresentadorHipotesis extends AppCompatActivity {
         agregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                lista.removeAllViews();
                 a = String.valueOf(Idea.getText());
+                Subir();
                 TableRow row = new TableRow(getBaseContext());
                 TextView Nideas = new TextView(getBaseContext());
                 Nideas.setTextColor(Color.WHITE);
@@ -74,4 +85,40 @@ public class PresentadorHipotesis extends AppCompatActivity {
             }
         });
     }
+    public void Subir(){
+        //String texti= texto.getText().toString();
+        Map<String,String> datos = new HashMap<>();
+        datos.put("hipo", a);
+        datos.put("num3", AsignacionGrupo.numG);
+        JSONObject jsonData = new JSONObject(datos);
+        System.out.println(jsonData);
+        AndroidNetworking.post(MainActivity.port+":8080/Proyecto/restJR/Activity/HipotesisSubir")
+                .addJSONObjectBody(jsonData)
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            String estado=response.getString("Status");
+                            if(estado.equals("hecho")){
+                                Toast.makeText(PresentadorHipotesis.this, "subido", Toast.LENGTH_SHORT).show();
+                            }
+                            else{
+                                Toast.makeText(PresentadorHipotesis.this, "no", Toast.LENGTH_SHORT).show();
+                            }
+
+
+
+                        } catch (JSONException e) {
+                            Toast.makeText(PresentadorHipotesis.this, "Error: "+e.getMessage(),  Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    @Override
+                    public void onError(ANError anError) {
+                        Toast.makeText(PresentadorHipotesis.this, "Error: "+anError.getErrorDetail() , Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
 }

@@ -118,15 +118,17 @@ public class AsignacionTema extends AppCompatActivity {
                 });
 
     }
-    public void actualizar(){
+
+    public void elegir(){
         String email = MainActivity.var1;
         String grup = PrincipalProfesor.g.get(PrincipalProfesor.posicion).getCodigo();
         //pass = codificarContrasena(pass);
         Map<String, String> datos = new HashMap<>();
         //datos.put("estudianteS", email);
-        datos.put("problematica", opciones.getSelectedItem().toString());
+        datos.put("problematica", gP.get(opciones.getSelectedItemPosition()).getProblematica());
+        datos.put("url", gP.get(opciones.getSelectedItemPosition()).getLink());
         JSONObject jsonData = new JSONObject(datos);
-        AndroidNetworking.post(MainActivity.port+":8080/Proyecto/restJR/Actividad/Update").
+        AndroidNetworking.post(MainActivity.port+":8080/Proyecto/restJR/Actividad/ProblemaElegido").
                 addJSONObjectBody(jsonData).
                 setPriority(Priority.MEDIUM)
                 .build()
@@ -136,8 +138,8 @@ public class AsignacionTema extends AppCompatActivity {
                         try {
                             String estado = response.getString("Status");
                             //Toast.makeText(Registro.this, estado, Toast.LENGTH_SHORT).show();
-                            if (estado.compareTo("Hecho") == 0) {
-                                //Toast.makeText(AsignacionTema.this, "Iniciado", Toast.LENGTH_SHORT).show();
+                            if (estado.compareTo("hecho") == 0) {
+                                Toast.makeText(AsignacionTema.this, "Iniciando Clase", Toast.LENGTH_SHORT).show();
                                // Intent intent = new Intent(AsignacionTema.this, Admin.class);
                                 //startActivity(intent);
                             } else {
@@ -154,11 +156,22 @@ public class AsignacionTema extends AppCompatActivity {
                 });
 
     }
+
     public void iniciar(View view){
-        actualizar();
+       // actualizar();
         pasarGeneral();
+        elegir();
+
         poss=opciones.getSelectedItem().toString();
 
-        //Toast.makeText(this, "este"+poss, Toast.LENGTH_SHORT).show();
+       int jff=opciones.getSelectedItemPosition();
+        Toast.makeText(this, "num: "+jff, Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(AsignacionTema.this, Admin.class);
+        startActivity(intent);
+    }
+    public void agregar(View view){
+        Intent intent = new Intent(AsignacionTema.this, CrearTema.class);
+        startActivity(intent);
     }
 }

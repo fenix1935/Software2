@@ -13,7 +13,17 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PresentadorIdeas extends AppCompatActivity {
     ArrayList<String> ideas = new ArrayList<String>();
@@ -37,6 +47,7 @@ public class PresentadorIdeas extends AppCompatActivity {
             public void onClick(View v) {
                 a = String.valueOf(Idea.getText());
                 ideas.add(a);
+                Subir();
                 TableLayout lista = (TableLayout) findViewById(R.id.tableclave);
                 TableRow row = new TableRow(getBaseContext());
                 TextView Nideas = new TextView(getBaseContext());
@@ -58,38 +69,42 @@ public class PresentadorIdeas extends AppCompatActivity {
             }
         });
     }
-    /*
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.idea);
-        final EditText Idea = (EditText) findViewById(R.id.ETxInfoIdeas);
-        Button agregarHip = (Button) findViewById(R.id.buttonIdeas);
-        agregarHip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                a = String.valueOf(Idea.getText());
-                TableLayout lista = (TableLayout) findViewById(R.id.tableIdeas);
-                TableRow row = new TableRow(getBaseContext());
-                TextView Nideas = new TextView(getBaseContext());
-                Nideas.setTextColor(Color.WHITE);
-                Nideas.setTextSize(18);
-                Nideas.setText(a);
-                row.addView(Nideas);
-                lista.addView(row);
-                Idea.setText("");
 
-            }
+    public void Subir(){
+        String texti= a;
+        Map<String,String> datos = new HashMap<>();
+        datos.put("idea", texti);
+        datos.put("num2", AsignacionGrupo.numG);
+        JSONObject jsonData = new JSONObject(datos);
+        System.out.println(jsonData);
+        AndroidNetworking.post(MainActivity.port+":8080/Proyecto/restJR/Activity/IdeaSubir")
+                .addJSONObjectBody(jsonData)
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            String estado=response.getString("Status");
+                            if(estado.equals("hecho")){
+                                Toast.makeText(PresentadorIdeas.this, "subido", Toast.LENGTH_SHORT).show();
+                            }
+                            else{
+                                Toast.makeText(PresentadorIdeas.this, "no", Toast.LENGTH_SHORT).show();
+                            }
 
-        });
+
+
+                        } catch (JSONException e) {
+                            Toast.makeText(PresentadorIdeas.this, "Error: "+e.getMessage(),  Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    @Override
+                    public void onError(ANError anError) {
+                        Toast.makeText(PresentadorIdeas.this, "Error: "+anError.getErrorDetail() , Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
-
-    public void pasoHip(View vista) {
-
-        Intent changeHipotesis = new Intent(this, PresentadorHipotesis.class);
-        startActivity(changeHipotesis);
-    }
-*/
 }
 

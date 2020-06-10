@@ -33,13 +33,13 @@ public class ServiceActividad {
         return Response.status(Response.Status.CREATED).entity("{\"Status\": \"Error\"}").build();
     }
 	@POST
-    @Path("/Update")
+    @Path("/ProblemaElegido")
     @Consumes({MediaType.APPLICATION_JSON})
     @Produces({MediaType.APPLICATION_JSON})
     public Response SaberUsuario(VOActividad vo) {
         DAOActividad dao = new DAOActividad();        
         try {
-			if(dao.updatePro(vo)!=false) {
+			if(dao.elegirPro(vo)!=false) {
 					return Response.status(Response.Status.CREATED).entity("{\"Status\": \"hecho\"}").build();
 				
 			}else {
@@ -50,20 +50,42 @@ public class ServiceActividad {
 		}
         return Response.status(Response.Status.CREATED).entity("{\"Status\": \"Error\"}").build();
     }
+	
 	@POST
-    @Path("/GET")
+    @Path("/GetProblema")
     @Consumes({MediaType.APPLICATION_JSON})
     @Produces({MediaType.APPLICATION_JSON})
     public Response SaberUsuario1(VOActividad vo) {
         DAOActividad dao = new DAOActividad();        
         try {
 			
-				String aux =(String) dao.getPro(vo);
-				return Response.status(Response.Status.CREATED).entity("{\"Status\": \""+aux+"\"}").build();
+				VOActividad aux =dao.getPro(vo);
+				String prob=aux.getProblematica();
+				String lin=aux.getUrl();
+				return Response.status(Response.Status.CREATED).entity("{\"problematica\": \""+prob+"\",\"url\":\""+lin+"\"}").build();
 				
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+        return Response.status(Response.Status.CREATED).entity("{\"Status\": \"Error\"}").build();
+    }
+	@POST
+    @Path("/CrearProblema")
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
+    public Response crear(VOActividad vo) {
+        DAOActividad dao = new DAOActividad();        
+        try {
+			if(dao.crearProblema(vo)!=false) {
+					return Response.status(Response.Status.CREATED).entity("{\"Status\": \"hecho\"}").build();
+				
+			}else {
+				return Response.status(Response.Status.CREATED).entity("{\"Status\": \"Error\"}").build();
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
         return Response.status(Response.Status.CREATED).entity("{\"Status\": \"Error\"}").build();
     }
+    
 }
