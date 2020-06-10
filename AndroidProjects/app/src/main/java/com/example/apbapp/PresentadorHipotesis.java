@@ -64,7 +64,9 @@ public class PresentadorHipotesis extends AppCompatActivity {
         agregar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                lista.removeAllViews();
                 a = String.valueOf(Idea.getText());
+                Subir();
                 TableRow row = new TableRow(getBaseContext());
                 TextView Nideas = new TextView(getBaseContext());
                 Nideas.setTextColor(Color.WHITE);
@@ -86,11 +88,11 @@ public class PresentadorHipotesis extends AppCompatActivity {
     public void Subir(){
         //String texti= texto.getText().toString();
         Map<String,String> datos = new HashMap<>();
-       // datos.put("problem", texti);
-        datos.put("num1", AsignacionGrupo.numG);
+        datos.put("hipo", a);
+        datos.put("num3", AsignacionGrupo.numG);
         JSONObject jsonData = new JSONObject(datos);
         System.out.println(jsonData);
-        AndroidNetworking.post(MainActivity.port+":8080/Proyecto/restJR/Activity/ProblemaSubir")
+        AndroidNetworking.post(MainActivity.port+":8080/Proyecto/restJR/Activity/HipotesisSubir")
                 .addJSONObjectBody(jsonData)
                 .setPriority(Priority.MEDIUM)
                 .build()

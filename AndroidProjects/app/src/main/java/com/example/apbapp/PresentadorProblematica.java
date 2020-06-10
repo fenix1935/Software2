@@ -111,8 +111,6 @@ public void Subir(){
                             Toast.makeText(PresentadorProblematica.this, "no", Toast.LENGTH_SHORT).show();
                         }
 
-
-
                     } catch (JSONException e) {
                         Toast.makeText(PresentadorProblematica.this, "Error: "+e.getMessage(),  Toast.LENGTH_SHORT).show();
                     }

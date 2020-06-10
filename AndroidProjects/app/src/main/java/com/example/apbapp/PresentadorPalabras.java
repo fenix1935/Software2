@@ -43,6 +43,7 @@ public class PresentadorPalabras extends Activity {
             public void onClick(View v) {
                 a = String.valueOf(Idea.getText());
                 ideas.add(a);
+                Subir();
                 TableLayout lista = (TableLayout) findViewById(R.id.TablaClave);
                 TableRow row = new TableRow(getBaseContext());
                 TextView Nideas = new TextView(getBaseContext());
@@ -64,13 +65,13 @@ public class PresentadorPalabras extends Activity {
         });
     }
     public void Subir(){
-        String texti= texto.getText().toString();
+       // String texti= texto.getText().toString();
         Map<String,String> datos = new HashMap<>();
-        datos.put("problem", texti);
-        datos.put("num1", AsignacionGrupo.numG);
+        datos.put("palabras", a);
+        datos.put("num4", AsignacionGrupo.numG);
         JSONObject jsonData = new JSONObject(datos);
         System.out.println(jsonData);
-        AndroidNetworking.post(MainActivity.port+":8080/Proyecto/restJR/Activity/ProblemaSubir")
+        AndroidNetworking.post(MainActivity.port+":8080/Proyecto/restJR/Activity/PalabrasSubir")
                 .addJSONObjectBody(jsonData)
                 .setPriority(Priority.MEDIUM)
                 .build()
@@ -80,21 +81,21 @@ public class PresentadorPalabras extends Activity {
                         try {
                             String estado=response.getString("Status");
                             if(estado.equals("hecho")){
-                                Toast.makeText(PresentadorProblematica.this, "subido", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(PresentadorPalabras.this, "subido", Toast.LENGTH_SHORT).show();
                             }
                             else{
-                                Toast.makeText(PresentadorProblematica.this, "no", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(PresentadorPalabras.this, "no", Toast.LENGTH_SHORT).show();
                             }
 
 
 
                         } catch (JSONException e) {
-                            Toast.makeText(PresentadorProblematica.this, "Error: "+e.getMessage(),  Toast.LENGTH_SHORT).show();
+                            Toast.makeText(PresentadorPalabras.this, "Error: "+e.getMessage(),  Toast.LENGTH_SHORT).show();
                         }
                     }
                     @Override
                     public void onError(ANError anError) {
-                        Toast.makeText(PresentadorProblematica.this, "Error: "+anError.getErrorDetail() , Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PresentadorPalabras.this, "Error: "+anError.getErrorDetail() , Toast.LENGTH_SHORT).show();
                     }
                 });
     }
