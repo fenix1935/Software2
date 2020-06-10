@@ -6,7 +6,7 @@ create table usuario(
     tipo varchar(15) not null
 );
 
-DROP TABLE usuario
+
 
 create table grupos(
     codigo INT AUTO_INCREMENT,
