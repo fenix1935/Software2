@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -17,57 +19,36 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.androidnetworking.interfaces.StringRequestListener;
+import com.example.vo.VOActividad;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class PresentadorIdeas extends AppCompatActivity {
-    ArrayList<String> ideas = new ArrayList<String>();
+    ListView opciones;
+    private ArrayAdapter<String> adapter;
+
     private Button agregar;
     private Button seguir;
     String a;
-    public void setIdeas(ArrayList<String> ideas) {
-        this.ideas = ideas;
-    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.idea);
 
         agregar = (Button) findViewById(R.id.buttonIdeas);
-        seguir = (Button) findViewById(R.id.buttonSiguienteIdeas);
+
         final TableLayout lista = (TableLayout) findViewById(R.id.tableclave);
         final EditText Idea = (EditText) findViewById(R.id.ETxInfoIdeas);
-        agregar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                a = String.valueOf(Idea.getText());
-                ideas.add(a);
-                Subir();
-                TableLayout lista = (TableLayout) findViewById(R.id.tableclave);
-                TableRow row = new TableRow(getBaseContext());
-                TextView Nideas = new TextView(getBaseContext());
-                Nideas.setTextColor(Color.WHITE);
-                Nideas.setTextSize(18);
-                Nideas.setText(a);
-                row.addView(Nideas);
-                lista.addView(row);
-                Idea.setText("");
-                //Toast.makeText(getBaseContext(),"aaaa"+ideas.toString(),Toast.LENGTH_LONG).show();
-            }
-        });
-        seguir.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(PresentadorIdeas.this,PresentadorHipotesis.class);
-                intent.putExtra("ideas",ideas);
-                startActivity(intent);
-            }
-        });
+
     }
 
     public void Subir(){
@@ -105,6 +86,46 @@ public class PresentadorIdeas extends AppCompatActivity {
                     }
                 });
     }
+    /*
+    public void IdeaGet(){
+        MainActivity m= new MainActivity();
+        //String profe= PrincipalEstudiantes.g.get(PrincipalEstudiantes.posicion).getCodigoGrupo();
+        Map<String,String> datos = new HashMap<>();
+        datos.put("num2", "1");
+        JSONObject jsonData = new JSONObject(datos);
+        AndroidNetworking.post(MainActivity.port+":8080/Proyecto/restJR/Actividad/Problema").
+                addJSONObjectBody(jsonData).
+                setPriority(Priority.MEDIUM)
+                .build()
+                .getAsString(new StringRequestListener() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            // adapter.clear();
+                            Gson gson= new Gson();
+                            gP= new ArrayList<VOActividad>();
+                            Type userListType = (new TypeToken<ArrayList<VOActividad>>(){}).getType();
+                            gP= gson.fromJson(response, userListType);
+                            //System.out.println(g.size());
+                            //System.out.println(g.get(1).getNombreCurso());
+                            for(int i=0; i<gP.size();i++){
+                                String a= gP.get(i).getProblematica();
+                                adapter.add(gP.get(i).getProblematica());
+                            }
+                            adapter.notifyDataSetChanged();
 
+
+                        } catch (Exception e) {
+                            Toast.makeText(AsignacionTema.this, "Error: "+e.getMessage(),  Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    @Override
+                    public void onError(ANError anError) {
+                        Toast.makeText(AsignacionTema.this, "Error: "+anError.getErrorDetail() , Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+    }
+*/
 }
 
