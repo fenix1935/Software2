@@ -5,7 +5,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 
-import androidx.test.espresso.ViewAssertion;
 import androidx.test.espresso.ViewInteraction;
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
@@ -23,26 +22,22 @@ import static androidx.test.espresso.Espresso.pressBack;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.replaceText;
-import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.matcher.RootMatchers.withDecorView;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.not;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class TestRegistroEstudiante {
-    //@Rule
-    //public ActivityTestRule<Registro> activityTestRule = new ActivityTestRule<>(Registro.class);
+public class TestRegistroProfesor {
+
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void testRegistroEstudiante() {
+    public void testRegistroProfesor() {
         ViewInteraction appCompatButton = onView(
                 allOf(withId(R.id.btn_login_re), withText("Registrarse"),
                         childAtPosition(
@@ -71,7 +66,7 @@ public class TestRegistroEstudiante {
                                         0),
                                 0),
                         isDisplayed()));
-        appCompatEditText2.perform(replaceText("Marco "), closeSoftKeyboard());
+        appCompatEditText2.perform(replaceText("Marian"), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText3 = onView(
                 allOf(withId(R.id.registro_correo),
@@ -81,7 +76,7 @@ public class TestRegistroEstudiante {
                                         0),
                                 1),
                         isDisplayed()));
-        appCompatEditText3.perform(replaceText("MARCOA.CASTELLANOS@CORREO.USA.EDU.CO "), closeSoftKeyboard());
+        appCompatEditText3.perform(replaceText("Marian@correro.usa.edu.co"), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText4 = onView(
                 allOf(withId(R.id.registro_contraseña),
@@ -91,7 +86,7 @@ public class TestRegistroEstudiante {
                                         0),
                                 2),
                         isDisplayed()));
-        appCompatEditText4.perform(replaceText("12345"), closeSoftKeyboard());
+        appCompatEditText4.perform(replaceText("1234"), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText5 = onView(
                 allOf(withId(R.id.registro_confirmar_contraseña),
@@ -101,17 +96,17 @@ public class TestRegistroEstudiante {
                                         0),
                                 3),
                         isDisplayed()));
-        appCompatEditText5.perform(replaceText("12345"), closeSoftKeyboard());
+        appCompatEditText5.perform(replaceText("1234"), closeSoftKeyboard());
 
         pressBack();
 
         ViewInteraction appCompatRadioButton = onView(
-                allOf(withId(R.id.registro_radio_estudiante), withText("Estudiante"),
+                allOf(withId(R.id.registro_radio_profesor), withText("Profesor"),
                         childAtPosition(
                                 childAtPosition(
                                         withClassName(is("androidx.constraintlayout.widget.ConstraintLayout")),
                                         4),
-                                1),
+                                0),
                         isDisplayed()));
         appCompatRadioButton.perform(click());
 
@@ -134,11 +129,7 @@ public class TestRegistroEstudiante {
                                 9),
                         isDisplayed()));
         appCompatButton2.perform(click());
-
-        onView(withId(R.id.registro_hecho)).check((ViewAssertion) withText("Error"));
     }
-
-
 
     private static Matcher<View> childAtPosition(
             final Matcher<View> parentMatcher, final int position) {
