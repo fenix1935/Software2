@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PrincipalProfesor">
+
+    <LinearLayout
+        android:layout_width="373dp"
+        android:layout_height="611dp"
+        android:layout_margin="20dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar4">
+        >
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="7dp"
+                        android:layout_weight="2"
+                        android:orientation="vertical">
+
+                        <Button
+
+                            android:id="@+id/cursos_imagen_1"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:background="@drawable/efecto_boton"
+                            android:onClick="boton11"/>
+
+                        <TextView
+                            android:id="@+id/curso_name_1"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/fondo_profesor"
+                            android:gravity="center_horizontal"
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/curso_codigo1"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/fondo_profesor"
+                            android:gravity="center_horizontal"
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp"
+                            android:textStyle="italic" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="7dp"
+                        android:layout_weight="2"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/cursos_imagen_2"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:background="@drawable/efecto_boton_c2"
+                            android:onClick="boton22"/>
+
+                        <TextView
+                            android:id="@+id/curso_name_2"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/fondo_profesor"
+                            android:gravity="center_horizontal"
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/curso_codigo2"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/fondo_profesor"
+                            android:gravity="center_horizontal"
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp"
+                            android:textStyle="italic" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="7dp"
+                        android:layout_weight="2"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/cursos_imagen_3"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:background="@drawable/efecto_boton_c3"
+                            android:onClick="boton33"/>
+
+                        <TextView
+                            android:id="@+id/curso_name_3"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/fondo_profesor"
+                            android:gravity="center_horizontal"
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/curso_codigo3"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/fondo_profesor"
+                            android:gravity="center_horizontal"
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp"
+                            android:textStyle="italic" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="7dp"
+                        android:layout_weight="2"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/curso_imagen_4"
+                            android:layout_width="148dp"
+                            android:layout_height="143dp"
+                            android:background="@drawable/efecto_boton_agregar"
+                            android:onClick="boton44"/>
+
+                        <TextView
+                            android:id="@+id/curso_profe4"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/fondo_profesor"
+                            android:gravity="center_horizontal"
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/curso_codigo4"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/fondo_profesor"
+                            android:gravity="center_horizontal"
+                            android:text=""
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp"
+                            android:textStyle="italic" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="7dp"
+                        android:layout_weight="2"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/curso_imagen_5"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:background="@drawable/efecto_boton_agregar"
+                            android:onClick="boton55"/>
+
+                        <TextView
+                            android:id="@+id/curso_profe5"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/fondo_profesor"
+                            android:gravity="center_horizontal"
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/curso_codigo5"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/fondo_profesor"
+                            android:gravity="center_horizontal"
+                            android:text=""
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp"
+                            android:textStyle="italic" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="7dp"
+                        android:layout_weight="2"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/curso_imagen_6"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:background="@drawable/efecto_boton_agregar"
+                            android:onClick="boton66"/>
+
+                        <TextView
+                            android:id="@+id/curso_profe6"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/fondo_profesor"
+                            android:gravity="center_horizontal"
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/curso_codigo6"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/fondo_profesor"
+                            android:gravity="center_horizontal"
+                            android:text=""
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp"
+                            android:textStyle="italic" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="7dp"
+                        android:layout_weight="2"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/curso_imagen_7"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:background="@drawable/efecto_boton_agregar"
+                            android:onClick="boton77"/>
+
+                        <TextView
+                            android:id="@+id/curso_profe7"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/fondo_profesor"
+                            android:gravity="center_horizontal"
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/curso_codigo7"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/fondo_profesor"
+                            android:gravity="center_horizontal"
+                            android:text=""
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp"
+                            android:textStyle="italic" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="7dp"
+                        android:layout_weight="2"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/curso_imagen_8"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:background="@drawable/efecto_boton_agregar"
+                            android:onClick="boton88"/>
+
+                        <TextView
+                            android:id="@+id/curso_profe8"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/fondo_profesor"
+                            android:gravity="center_horizontal"
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/curso_codigo8"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/fondo_profesor"
+                            android:gravity="center_horizontal"
+                            android:text=""
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp"
+                            android:textStyle="italic" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar4"
+        android:layout_width="match_parent"
+        android:layout_height="63dp"
+        android:background="@drawable/fondo_profesor"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cursos"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toolbar4" />
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

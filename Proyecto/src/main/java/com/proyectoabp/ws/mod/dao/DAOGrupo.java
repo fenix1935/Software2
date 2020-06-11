@@ -118,7 +118,7 @@ public class DAOGrupo {
 			String nombreg= null;
 			while (rs.next()) {
 				//code=rs.getString("codigo");
-				code= rs.getString("codi");
+				code= rs.getString("AccessCode");
 				codeG= rs.getString("codigoGrupo");
 				est = rs.getString("estudiante");
 				nota = rs.getString("nota");

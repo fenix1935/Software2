@@ -124,6 +124,37 @@ public class DAOSesiones {
 		}
 		return h;
 	}
+	
+	public String getSesiones1(VOSesiones vo) {
+		String h=null;
+		Gson gson= new Gson();
+		ArrayList<VOSesiones> grupos= new ArrayList<VOSesiones>();
+		PreparedStatement preparedStmt = null;
+		String query = "select * from sesiones where grupo=? and numeroGrupo>0 and numeroGrupo<5";
+		try {
+			Connection connection = Conexion.getConenction();
+			preparedStmt = connection.prepareStatement(query);
+			preparedStmt.setString(1, vo.getGrupoS());
+			//preparedStmt.setString(2, vo.getGnum());
+			ResultSet rs = preparedStmt.executeQuery();
+			String code=null;
+			String est= null;
+			String nombre = null;
+			String profe = null;
+			while (rs.next()) {
+				code=rs.getString("codiguito");
+				est= rs.getString("estudiante");
+				nombre = rs.getString("grupo");
+				profe = rs.getString("numeroGrupo");
+				grupos.add(new VOSesiones(est, nombre, profe));
+			}
+			h= gson.toJson(grupos);
+			connection.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return h;
+	}
 	public boolean deleteSesion(VOSesiones vo)  throws SQLException{
 		int result = 0;
 		PreparedStatement preparedStmt = null;

@@ -46,13 +46,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Usuario = findViewById(R.id.textoUsuarioRegistro);
-        Contrasena = findViewById(R.id.textoContrasenaRegistro);
-
-
-
-
+        setContentView(R.layout.activity_main2);
+        Usuario = findViewById(R.id.txt_usuario_login);
+        Contrasena = findViewById(R.id.txt_contraseña_login);
     }
     //transfiere usuario a la ventana de registro
     public void botonIrRegistro(View view){
@@ -87,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                             //Toast.makeText(MainActivity.this, estado, Toast.LENGTH_SHORT).show();
                             if(estado.equals("Estudiante")) {
                                 Toast.makeText(MainActivity.this, estado + " logued", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(MainActivity.this, PrincipalEstudiantes.class);
+                                Intent intent = new Intent(MainActivity.this, PrincipalEstudiantes1.class);
                                 startActivity(intent);
                                // finish();
                             }else if(estado.equals("Profesor")){
@@ -109,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
         }
+
     private String codificarContrasena(String pass){
         String hash=null;
         String password=pass;

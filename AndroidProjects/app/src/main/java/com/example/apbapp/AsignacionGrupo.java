@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,13 +32,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AsignacionGrupo extends AppCompatActivity {
- ListView opciones;
+TextView e1;
+    TextView e2;
+    TextView e3;
+    TextView e4;
  TextView textoNombreGrupoAsignado2;
     TextView textoNombreGrupoAsignado;
  private static String state="No disponible";
     private final int TIEMPO = 2000; // 1 Second
     private Handler handler = new Handler();
-    private ArrayAdapter<String> adapter;
+    //TableLayout tablita;
     public static ArrayList<VOSesion> g1;
     private String estado1="0";
     private String estado2="no";
@@ -45,22 +49,18 @@ public class AsignacionGrupo extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.grupo_asignacion);
-        textoNombreGrupoAsignado2=findViewById(R.id.textoNombreGrupoAsignado2);
-        textoNombreGrupoAsignado=findViewById(R.id.textoNombreGrupoAsignado);
-        textoNombreGrupoAsignado2.setText(PrincipalEstudiantes.cursoCode+" "+state);
+        setContentView(R.layout.activity_grupo_estudiante);
+        textoNombreGrupoAsignado2=findViewById(R.id.textViewDisponible);
+        textoNombreGrupoAsignado=findViewById(R.id.textView15);
+        textoNombreGrupoAsignado2.setText(PrincipalEstudiantes1.cursoCode+" "+state);
+        e1=findViewById(R.id.textEstudiante1);
+        e2=findViewById(R.id.textEstudiante2);
+        e3=findViewById(R.id.textEstudiante3);
+        e4=findViewById(R.id.textEstudiante4);
 
-        opciones = (ListView) findViewById(R.id.listG);
-
-        adapter= new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
-        opciones.setAdapter(adapter);
-        update(PrincipalEstudiantes.posicion);
+        update(PrincipalEstudiantes1.posicion);
         //grupoGet1();
             ejecutarTarea2();
-
-
-        adapter.add(MainActivity.var1);
-        adapter.notifyDataSetChanged();
     }
     public void ejecutarTarea2() {
         handler.postDelayed(new Runnable() {
@@ -69,10 +69,10 @@ public class AsignacionGrupo extends AppCompatActivity {
                     Intent intent = new Intent(AsignacionGrupo.this, AsignacionTema.class);
                     startActivity(intent);
                 }*/
-                //textoNombreGrupoAsignado2.setText(PrincipalEstudiantes.cursoCode+" "+state);
+                //textoNombreGrupoAsignado2.setText(PrincipalEstudiantes1.cursoCode+" "+state);
                 // función a ejecutar
                 //Toast.makeText(PrincipalProfesor.this, "asd", Toast.LENGTH_SHORT).show(); // función para refrescar la ubicación del conductor, creada en otra línea de código
-                update(PrincipalEstudiantes.posicion);
+                update(PrincipalEstudiantes1.posicion);
                 update2();
                 grupoGet1();
                 pasar1();
@@ -84,7 +84,7 @@ public class AsignacionGrupo extends AppCompatActivity {
 
     public void grupoGet1(){
         MainActivity m= new MainActivity();
-        String profe= PrincipalEstudiantes.g.get(PrincipalEstudiantes.posicion).getCodigoGrupo();
+        String profe= PrincipalEstudiantes1.g.get(PrincipalEstudiantes1.posicion).getCodigoGrupo();
         Map<String,String> datos = new HashMap<>();
         datos.put("grupoS", profe);
         datos.put("Gnum",numG);
@@ -97,7 +97,10 @@ public class AsignacionGrupo extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         try {
-                            adapter.clear();
+                                e1.setText("-");
+                            e2.setText("-");
+                            e3.setText("-");
+                            e4.setText("-");
                             Gson gson= new Gson();
                             g1= new ArrayList<VOSesion>();
                             Type userListType = (new TypeToken<ArrayList<VOSesion>>(){}).getType();
@@ -105,9 +108,14 @@ public class AsignacionGrupo extends AppCompatActivity {
                             //System.out.println(g.size());
                             //System.out.println(g.get(1).getNombreCurso());
                             for(int i=0; i<g1.size();i++){
-                                adapter.add(g1.get(i).getEstudianteS());
+                                switch(i){
+                                    case 0:e1.setText(g1.get(i).getEstudianteS()); break;
+                                    case 1:e2.setText(g1.get(i).getEstudianteS()); break;
+                                    case 2:e3.setText(g1.get(i).getEstudianteS()); break;
+                                    case 3:e4.setText(g1.get(i).getEstudianteS()); break;
+                                }
                             }
-                            adapter.notifyDataSetChanged();
+
 
                         } catch (Exception e) {
                             Toast.makeText(AsignacionGrupo.this, "Error: "+e.getMessage(),  Toast.LENGTH_SHORT).show();
@@ -123,7 +131,7 @@ public class AsignacionGrupo extends AppCompatActivity {
     private void iniciarSesion(int pos){
 
         String email = MainActivity.var1;
-        String grup = PrincipalEstudiantes.g.get(pos).getCodigoGrupo();
+        String grup = PrincipalEstudiantes1.g.get(pos).getCodigoGrupo();
         //pass = codificarContrasena(pass);
         Map<String,String> datos = new HashMap<>();
         datos.put("estudianteS", email);
@@ -140,12 +148,12 @@ public class AsignacionGrupo extends AppCompatActivity {
                             String estado= response.getString("Status");
                             //Toast.makeText(Registro.this, estado, Toast.LENGTH_SHORT).show();
                             if (estado.compareTo("hecho")==0){
-                                //Intent intent = new Intent(PrincipalEstudiantes.this, AsignacionGrupo.class);
+                                //Intent intent = new Intent(PrincipalEstudiantes1.this, AsignacionGrupo.class);
                                 //startActivity(intent);
                                 Toast.makeText(AsignacionGrupo.this, "Usuario Registrado", Toast.LENGTH_SHORT).show();
                             }
                             else{
-                                //Intent intent = new Intent(PrincipalEstudiantes.this, AsignacionGrupo.class);
+                                //Intent intent = new Intent(PrincipalEstudiantes1.this, AsignacionGrupo.class);
                                 //startActivity(intent);
                                 Toast.makeText(AsignacionGrupo.this, "No se ha comenzado la sesión o ya está registrado en una", Toast.LENGTH_SHORT).show();
                             }
@@ -163,7 +171,7 @@ public class AsignacionGrupo extends AppCompatActivity {
     private void delite(int pos){
 
         String email = MainActivity.var1;
-        String grup = PrincipalEstudiantes.g.get(pos).getCodigoGrupo();
+        String grup = PrincipalEstudiantes1.g.get(pos).getCodigoGrupo();
         //pass = codificarContrasena(pass);
         Map<String,String> datos = new HashMap<>();
         datos.put("estudianteS", email);
@@ -180,12 +188,12 @@ public class AsignacionGrupo extends AppCompatActivity {
                             String estado= response.getString("Status");
                             //Toast.makeText(Registro.this, estado, Toast.LENGTH_SHORT).show();
                             if (estado.compareTo("Hecho")==0){
-                                //Intent intent = new Intent(PrincipalEstudiantes.this, AsignacionGrupo.class);
+                                //Intent intent = new Intent(PrincipalEstudiantes1.this, AsignacionGrupo.class);
                                 //startActivity(intent);
                                 Toast.makeText(AsignacionGrupo.this, "Usuario Eliminado", Toast.LENGTH_SHORT).show();
                             }
                             else{
-                                //Intent intent = new Intent(PrincipalEstudiantes.this, AsignacionGrupo.class);
+                                //Intent intent = new Intent(PrincipalEstudiantes1.this, AsignacionGrupo.class);
                                 //startActivity(intent);
                                 Toast.makeText(AsignacionGrupo.this, "No se puede eliminar", Toast.LENGTH_SHORT).show();
                             }
@@ -204,7 +212,7 @@ public class AsignacionGrupo extends AppCompatActivity {
 
     private void update(int pos) {
         String email = MainActivity.var1;
-        String grup = PrincipalEstudiantes.g.get(pos).getCodigoGrupo();
+        String grup = PrincipalEstudiantes1.g.get(pos).getCodigoGrupo();
         //pass = codificarContrasena(pass);
         Map<String, String> datos = new HashMap<>();
         //datos.put("estudianteS", email);
@@ -221,17 +229,17 @@ public class AsignacionGrupo extends AppCompatActivity {
                             String estado = response.getString("Status");
                             //Toast.makeText(Registro.this, estado, Toast.LENGTH_SHORT).show();
                             if (estado.compareTo("hecho") == 0) {
-                                //Intent intent = new Intent(PrincipalEstudiantes.this, AsignacionGrupo.class);
+                                //Intent intent = new Intent(PrincipalEstudiantes1.this, AsignacionGrupo.class);
                                 //startActivity(intent);
                                 //Toast.makeText(AsignacionGrupo.this, "Usuario Eliminado", Toast.LENGTH_SHORT).show();
                                 state="Disponible";
-                                textoNombreGrupoAsignado2.setText(PrincipalEstudiantes.cursoCode+" "+state);
+                                textoNombreGrupoAsignado2.setText(PrincipalEstudiantes1.cursoCode+" "+state);
                             } else {
-                                //Intent intent = new Intent(PrincipalEstudiantes.this, AsignacionGrupo.class);
+                                //Intent intent = new Intent(PrincipalEstudiantes1.this, AsignacionGrupo.class);
                                 //startActivity(intent);
                                 //Toast.makeText(AsignacionGrupo.this, "No se puede eliminar", Toast.LENGTH_SHORT).show();
                                 state="No Disponible";
-                                textoNombreGrupoAsignado2.setText(PrincipalEstudiantes.cursoCode+" "+state);
+                                textoNombreGrupoAsignado2.setText(PrincipalEstudiantes1.cursoCode+" "+state);
                             }
                         } catch (JSONException e) {
                             Toast.makeText(AsignacionGrupo.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -246,7 +254,7 @@ public class AsignacionGrupo extends AppCompatActivity {
     }
     private void update2() {
         String email = MainActivity.var1;
-        //String grup = PrincipalEstudiantes.g.get(pos).getCodigoGrupo();
+        //String grup = PrincipalEstudiantes1.g.get(pos).getCodigoGrupo();
         //pass = codificarContrasena(pass);
         Map<String, String> datos = new HashMap<>();
         //datos.put("estudianteS", email);
@@ -263,13 +271,13 @@ public class AsignacionGrupo extends AppCompatActivity {
                             String estado = response.getString("Status");
                             //Toast.makeText(Registro.this, estado, Toast.LENGTH_SHORT).show();
                             if (estado.compareTo("null") == 0) {
-                                //Intent intent = new Intent(PrincipalEstudiantes.this, AsignacionGrupo.class);
+                                //Intent intent = new Intent(PrincipalEstudiantes1.this, AsignacionGrupo.class);
                                 //startActivity(intent);
                                 //Toast.makeText(AsignacionGrupo.this, "Usuario Eliminado", Toast.LENGTH_SHORT).show();
                                 //state="Disponible";
                                 textoNombreGrupoAsignado.setText("Grupo #?");
                             } else {
-                                //Intent intent = new Intent(PrincipalEstudiantes.this, AsignacionGrupo.class);
+                                //Intent intent = new Intent(PrincipalEstudiantes1.this, AsignacionGrupo.class);
                                 //startActivity(intent);
                                 //Toast.makeText(AsignacionGrupo.this, "No se puede eliminar", Toast.LENGTH_SHORT).show();
                                 //state="No Disponible";
@@ -309,7 +317,7 @@ public class AsignacionGrupo extends AppCompatActivity {
                                 estado1="1";
                                 //Toast.makeText(AsignacionGrupo.this, estado1, Toast.LENGTH_SHORT).show();
                                // Toast.makeText(AsignacionGrupo.this, "sjsjs", Toast.LENGTH_SHORT).show();
-                                pasar2(PrincipalEstudiantes.posicion);
+                                pasar2(PrincipalEstudiantes1.posicion);
                                 if(estado2.equals("si")) {
                                     Intent intent = new Intent(AsignacionGrupo.this, PresentadorProblematica.class);
                                     startActivity(intent);
@@ -338,7 +346,7 @@ public class AsignacionGrupo extends AppCompatActivity {
         Map<String, String> datos = new HashMap<>();
         //datos.put("estudianteS", email);
         datos.put("estudianteS", MainActivity.var1);
-        datos.put("grupoS",PrincipalEstudiantes.g.get(pos).getCodigoGrupo());
+        datos.put("grupoS",PrincipalEstudiantes1.g.get(pos).getCodigoGrupo());
         JSONObject jsonData = new JSONObject(datos);
         AndroidNetworking.post(MainActivity.port+":8080/Proyecto/restJR/Sesion/SesionNumero1").
                 addJSONObjectBody(jsonData).
@@ -375,9 +383,9 @@ public class AsignacionGrupo extends AppCompatActivity {
 
     }
     public void botonRegistrar1(View view){
-        iniciarSesion(PrincipalEstudiantes.posicion);
+        iniciarSesion(PrincipalEstudiantes1.posicion);
     }
     public void botonEliminar1(View view){
-        delite(PrincipalEstudiantes.posicion);
+        delite(PrincipalEstudiantes1.posicion);
     }
 }

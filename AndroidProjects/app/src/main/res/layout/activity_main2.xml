@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo1"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/imgLogin"
+        android:layout_width="247dp"
+        android:layout_height="247dp"
+        android:layout_marginTop="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/login" />
+
+    <Button
+        android:id="@+id/btn_login_entrar"
+        android:layout_width="260dp"
+        android:layout_height="54dp"
+        android:background="@drawable/btn_login"
+        android:onClick="botonIniciarSesion"
+        android:text="Entrar"
+        android:textColor="@drawable/txt_btn_login"
+        app:layout_constraintBottom_toTopOf="@+id/btn_login_re"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_contraseña_login"
+        app:layout_constraintVertical_bias="0.481" />
+
+    <Button
+        android:id="@+id/btn_login_re"
+        android:layout_width="260dp"
+        android:layout_height="54dp"
+        android:layout_marginBottom="116dp"
+        android:background="@drawable/btn1"
+        android:onClick="botonIrRegistro"
+        android:text="Registrarse"
+        android:textColor="@drawable/txt_btn_registrar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/txt_contraseña_login"
+        android:layout_width="255dp"
+        android:layout_height="42dp"
+        android:ems="10"
+        android:hint="Contraseña"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_usuario_login"
+        app:layout_constraintVertical_bias="0.052" />
+
+    <EditText
+        android:id="@+id/txt_usuario_login"
+        android:layout_width="255dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:hint="Usuario"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgLogin"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

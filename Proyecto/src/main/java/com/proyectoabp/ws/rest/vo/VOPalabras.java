@@ -18,7 +18,6 @@ public class VOPalabras {
 		
 	}
 
-
 	public String getPalabras() {
 		return palabras;
 	}
@@ -34,6 +33,4 @@ public class VOPalabras {
 	public void setNum4(String num4) {
 		this.num4 = num4;
 	}
-	
-
 }

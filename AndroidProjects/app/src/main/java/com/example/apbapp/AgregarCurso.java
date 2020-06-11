@@ -28,8 +28,8 @@ public class AgregarCurso extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.curso_ingresar);
-        Codigo = findViewById(R.id.textoIntroducirCodigo);
+        setContentView(R.layout.activity_unirse_curso_estudiante);
+        Codigo = findViewById(R.id.unirseGrupo);
 
     }
 
@@ -60,7 +60,7 @@ public class AgregarCurso extends AppCompatActivity {
                             String estado= response.getString("Status");
                             //Toast.makeText(Registro.this, estado, Toast.LENGTH_SHORT).show();
                             if (estado.compareTo("hecho")==0){
-                                Intent intent = new Intent(AgregarCurso.this, PrincipalEstudiantes.class);
+                                Intent intent = new Intent(AgregarCurso.this, PrincipalEstudiantes1.class);
                                 startActivity(intent);
                                 Toast.makeText(AgregarCurso.this, "Curso Guardado", Toast.LENGTH_SHORT).show();
                             }

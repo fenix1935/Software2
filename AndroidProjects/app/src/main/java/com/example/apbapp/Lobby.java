@@ -29,6 +29,7 @@ import java.util.Map;
 
 public class Lobby extends AppCompatActivity {
 TextView co;
+TextView codigo;
 TextView G1;
     TextView G2;
     TextView G3;
@@ -44,19 +45,20 @@ TextView G1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.lobby);
-
-        co= findViewById(R.id.textoGrupoCodigo);
+        setContentView(R.layout.activity_grupos_profesor);
+        codigo=findViewById(R.id.textView25);
+        co= findViewById(R.id.textView3);
         co.setText(PrincipalProfesor.cursoE);
-        G1=findViewById(R.id.textoGrupo1);
-        G2=findViewById(R.id.textoGrupo2);
-        G3=findViewById(R.id.textoGrupo3);
-        G4=findViewById(R.id.textoGrupo4);
+        codigo.setText(PrincipalProfesor.g.get(PrincipalProfesor.posicion).getCodigoAcceso());
+        G1=findViewById(R.id.textView27);
+        G2=findViewById(R.id.textView29);
+        G3=findViewById(R.id.textView31);
+        G4=findViewById(R.id.textView33);
         grupoGet1();
-        G1.setText("Grupo 1: "+prueba1+"/4");
-        G2.setText("Grupo 2: "+prueba2+"/4");
-        G3.setText("Grupo 3: "+prueba3+"/4");
-        G4.setText("Grupo 4: "+prueba4+"/4");
+        G1.setText(prueba1+"/4");
+        G2.setText(prueba2+"/4");
+        G3.setText(prueba3+"/4");
+        G4.setText(prueba4+"/4");
         //Toast.makeText(this, "La suma es:"+g2.get(0).getGnum(), Toast.LENGTH_SHORT).show();
         //Toast.makeText(this, "tamaño "+g2.get(0).getGnum(), Toast.LENGTH_SHORT).show();
     ejecutarTarea2();
@@ -78,10 +80,10 @@ TextView G1;
                 prueba3=0;
                 prueba4=0;
                 if (g2.size()==0){
-                    G1.setText("Grupo 1: "+prueba1+"/4");
-                    G2.setText("Grupo 2: "+prueba2+"/4");
-                    G3.setText("Grupo 3: "+prueba3+"/4");
-                    G4.setText("Grupo 4: "+prueba4+"/4");
+                    G1.setText(prueba1+"/4");
+                    G2.setText(prueba2+"/4");
+                    G3.setText(prueba3+"/4");
+                    G4.setText(prueba4+"/4");
                 }
                 else{
                 for(int i=0; i<g2.size();i++) {
@@ -89,19 +91,19 @@ TextView G1;
                     switch (cont) {
                         case 1:
                             prueba1++;
-                            G1.setText("Grupo 1: " + prueba1 + "/4");
+                            G1.setText(prueba1 + "/4");
                             break;
                         case 2:
                             prueba2++;
-                            G2.setText("Grupo 2: " + prueba2 + "/4");
+                            G2.setText(prueba2 + "/4");
                             break;
                         case 3:
                             prueba3++;
-                            G3.setText("Grupo 3: " + prueba3 + "/4");
+                            G3.setText(prueba3 + "/4");
                             break;
                         case 4:
                             prueba4++;
-                            G4.setText("Grupo 4: " + prueba4 + "/4");
+                            G4.setText(prueba4 + "/4");
                             break;
                     }
                 }
@@ -192,7 +194,7 @@ TextView G1;
         Map<String,String> datos = new HashMap<>();
         datos.put("grupoS", profe);
         JSONObject jsonData = new JSONObject(datos);
-        AndroidNetworking.post(MainActivity.port+":8080/Proyecto/restJR/Sesion/SesionDatos").
+        AndroidNetworking.post(MainActivity.port+":8080/Proyecto/restJR/Sesion/SesionDatos1").
                 addJSONObjectBody(jsonData).
                 setPriority(Priority.MEDIUM)
                 .build()
@@ -223,6 +225,7 @@ TextView G1;
 
     public void botoninicio(View view){
         inicio();
+       // Toast.makeText(this, "la suma es"+(prueba1+prueba2+prueba3+prueba4), Toast.LENGTH_SHORT).show();
     }
     public void botonempezar(View view){
 verify();
