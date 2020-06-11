@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -33,8 +34,6 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class Registro extends AppCompatActivity {
-
-
     EditText Correo;
     EditText Contrasena;
     EditText Contrasena2;
@@ -43,39 +42,40 @@ public class Registro extends AppCompatActivity {
     RadioGroup Estado;
     CheckBox terminos;
     String tipo;
-
+    Button d;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.registro_usuario);
-        Correo = findViewById(R.id.Correo);
-        Contrasena = findViewById(R.id.contra);
-        Contrasena2 = findViewById(R.id.contra2);
+        setContentView(R.layout.registro_usuario2);
+        Correo = findViewById(R.id.registro_correo);
+        Contrasena = findViewById(R.id.registro_contraseña);
+        Contrasena2 = findViewById(R.id.registro_confirmar_contraseña);
 
-        r1= findViewById(R.id.radioButtonEstudiante);
-        r2= findViewById(R.id.radioButtonProfesor);
-    }
+        r1 = (RadioButton) findViewById(R.id.registro_radio_estudiante);
+        r2 = (RadioButton) findViewById(R.id.registro_radio_profesor);
 
+        d = findViewById(R.id.registro_hecho);
 
-
-    @SuppressLint("ResourceType")
-    public void botonRegistrar(View view){
-        if(r1.isChecked()==true){
-            tipo="Estudiante";
-        }else if(r2.isChecked()==true){
-                tipo="Profesor";
-        } else {
-            tipo = "";
-        }
-        if(!Contrasena.getText().toString().equals(Contrasena2.getText().toString())){
-            Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
-        }else if(tipo.equals("")){
-                Toast.makeText(this, "Elija el tipo de usuario", Toast.LENGTH_SHORT).show();
-        } else {
-            guardarEstudiante();
-        }
-
+        d.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (r1.isChecked()) {
+                    tipo = "Estudiante";
+                } else if (r2.isChecked()) {
+                    tipo = "Profesor";
+                } else {
+                    tipo = "";
+                }
+                if (!Contrasena.getText().toString().equals(Contrasena2.getText().toString())) {
+                    Toast.makeText(Registro.this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show();
+                } else if (tipo.equals("")) {
+                    Toast.makeText(Registro.this, "Elija el tipo de usuario", Toast.LENGTH_SHORT).show();
+                } else {
+                    guardarEstudiante();
+                }
+            }
+        });
     }
     private void guardarEstudiante(){
 

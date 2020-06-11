@@ -78,6 +78,22 @@ public class ServiceSesiones {
         return Response.status(Response.Status.CREATED).entity("{\"Status\": \"Error\"}").build();
     }
 	@POST
+    @Path("/SesionDatos1")
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
+    public Response sesion311(VOSesiones vo) {
+		//System.out.println(vo.getProfesorsito());
+        DAOSesiones dao = new DAOSesiones();        
+        try {        	
+				String aux = (String) dao.getSesiones1(vo);
+				return Response.status(Response.Status.CREATED).entity(aux).build();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+        return Response.status(Response.Status.CREATED).entity("{\"Status\": \"Error\"}").build();
+    }
+	@POST
     @Path("/SesionDelete")
     @Consumes({MediaType.APPLICATION_JSON})
     @Produces({MediaType.APPLICATION_JSON})

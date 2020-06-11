@@ -24,27 +24,24 @@ import java.util.Random;
 import com.example.apbapp.MainActivity;
 
 public class CrearCurso extends AppCompatActivity {
-    EditText nombre;
+    //EditText nombre;
     EditText cod;
-    TextView name;
+    TextView numeros;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.curso_crear);
-        nombre= findViewById(R.id.textoCrearNombreGrupo);
-        name=findViewById(R.id.textView);
-        cod=findViewById(R.id.textoCrearNombreGrupo2);
-        name.setText("Bienvenido "+MainActivity.var1);
-        cod.setText(codigoGenerado());
+        setContentView(R.layout.activity_profesor_crear_curso);
+        numeros=findViewById(R.id.textViewNumeros);
+        cod=findViewById(R.id.editTextCrear);
+        numeros.setText(codigoGenerado());
 
 
     }
     public void ButonCrear(View view){
         crearC();
-
     }
     public void ButonUpdate(View view){
-        cod.setText(codigoGenerado());
+        numeros.setText(codigoGenerado());
     }
     public String codigoGenerado(){
         Random aleatorio = new Random();
@@ -69,10 +66,10 @@ public class CrearCurso extends AppCompatActivity {
     private void crearC(){
         MainActivity m= new MainActivity();
         String profe=m.getVar1();
-        String nombre1 = nombre.getText().toString();
+        String nombre1 = cod.getText().toString();
         String pass = cod.getText().toString();
         Map<String,String> datos = new HashMap<>();
-        datos.put("codigoAcceso", pass);
+        datos.put("codigoAcceso", numeros.getText().toString());
         datos.put("nombreCurso", nombre1);
         datos.put("profesor", profe);
         JSONObject jsonData = new JSONObject(datos);

@@ -1,11 +1,16 @@
 package com.example.apbapp;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,21 +34,45 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AsignacionTema extends AppCompatActivity {
-    Spinner opciones;
+    LinearLayout tablita;
+    ListView opciones;
     private ArrayAdapter<String> adapter;
     public static ArrayList<VOActividad> gP;
     public static String poss;
+    public static int posss;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.tema_asignacion);
+        setContentView(R.layout.activity_topico_profesor);
 
-        opciones = (Spinner) findViewById(R.id.spinnerTemas);
+        opciones=(ListView)findViewById(R.id.table111);
         adapter= new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
         opciones.setAdapter(adapter);
+
         grupoGet1();
+        opciones.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                int posss=position;
+                //String pos2= String.valueOf(pos);
+
+                pasarGeneral();
+                elegir();
+
+               // Intent intent = new Intent(AsignacionTema.this, AsignacionGrupo.class);
+                //startActivity(intent);
+                //int saber= position;
+
+                 //Toast.makeText(AsignacionTema.this, "POS "+position, Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
     }
+
+
+
+
 
     public void grupoGet1(){
         MainActivity m= new MainActivity();
@@ -67,9 +96,11 @@ public class AsignacionTema extends AppCompatActivity {
                             //System.out.println(g.size());
                             //System.out.println(g.get(1).getNombreCurso());
                             for(int i=0; i<gP.size();i++){
+                                String a= gP.get(i).getProblematica();
                                 adapter.add(gP.get(i).getProblematica());
                             }
                             adapter.notifyDataSetChanged();
+
 
                         } catch (Exception e) {
                             Toast.makeText(AsignacionTema.this, "Error: "+e.getMessage(),  Toast.LENGTH_SHORT).show();
@@ -125,8 +156,8 @@ public class AsignacionTema extends AppCompatActivity {
         //pass = codificarContrasena(pass);
         Map<String, String> datos = new HashMap<>();
         //datos.put("estudianteS", email);
-        datos.put("problematica", gP.get(opciones.getSelectedItemPosition()).getProblematica());
-        datos.put("url", gP.get(opciones.getSelectedItemPosition()).getLink());
+       datos.put("problematica", gP.get(posss).getProblematica());
+        datos.put("url", gP.get(posss).getLink());
         JSONObject jsonData = new JSONObject(datos);
         AndroidNetworking.post(MainActivity.port+":8080/Proyecto/restJR/Actividad/ProblemaElegido").
                 addJSONObjectBody(jsonData).
@@ -161,12 +192,15 @@ public class AsignacionTema extends AppCompatActivity {
        // actualizar();
         pasarGeneral();
         elegir();
-
+/*
         poss=opciones.getSelectedItem().toString();
 
        int jff=opciones.getSelectedItemPosition();
-        Toast.makeText(this, "num: "+jff, Toast.LENGTH_SHORT).show();
 
+
+        Toast.makeText(this, "num: "+jff, Toast.LENGTH_SHORT).show();
+        /*
+ */
         Intent intent = new Intent(AsignacionTema.this, Admin.class);
         startActivity(intent);
     }

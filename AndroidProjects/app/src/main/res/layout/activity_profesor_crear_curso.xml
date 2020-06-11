@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fondo_profesor"
+    tools:context=".CrearCurso">
+
+    <EditText
+        android:id="@+id/editTextCrear"
+        android:layout_width="308dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginBottom="48dp"
+        android:background="@drawable/btn_crearcurso"
+        android:ems="10"
+        android:hint="Crea tu curso"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        android:textColor="#B36ADB"
+        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageButton"
+        app:layout_constraintVertical_bias="0.384" />
+
+    <Button
+        android:id="@+id/buttonCrearCurso"
+        android:layout_width="88dp"
+        android:layout_height="88dp"
+        android:layout_marginBottom="96dp"
+        android:background="@drawable/btn_crearcurso"
+        android:foreground="@drawable/chulo3"
+        android:onClick="ButonCrear"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="236dp"
+        android:layout_height="236dp"
+        android:layout_marginTop="84dp"
+        android:background="@drawable/btn_crearcurso"
+        android:foreground="@drawable/mas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/btn_login" />
+
+    <TextView
+        android:id="@+id/textViewNumeros"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="152dp"
+        android:text="000000"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonCrearCurso"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextCrear"
+        app:layout_constraintVertical_bias="0.469" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="39dp"
+        android:layout_height="36dp"
+        android:layout_marginEnd="84dp"
+        android:background="?android:attr/scrollbarThumbHorizontal"
+        android:onClick="ButonUpdate"
+        android:src="@android:drawable/ic_popup_sync"
+        app:layout_constraintBottom_toTopOf="@+id/buttonCrearCurso"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.946"
+        app:layout_constraintStart_toEndOf="@+id/textViewNumeros"
+        app:layout_constraintTop_toBottomOf="@+id/editTextCrear"
+        app:layout_constraintVertical_bias="0.493" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

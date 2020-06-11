@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PrincipalEstudiantes1">
+
+    <LinearLayout
+        android:layout_width="373dp"
+        android:layout_height="611dp"
+        android:layout_margin="20dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar4">
+        >
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="7dp"
+                        android:layout_weight="2"
+                        android:orientation="vertical">
+
+                        <Button
+
+                            android:id="@+id/cursos_ima_1"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:background="@drawable/efecto_boton"
+                            android:onClick="boton1" />
+
+                        <TextView
+                            android:id="@+id/curso_nombre_1"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/degradado"
+                            android:gravity="center_horizontal"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/codigoC1"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/degradado"
+                            android:gravity="center_horizontal"
+                            android:textSize="16sp"
+                            android:textStyle="italic" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="7dp"
+                        android:layout_weight="2"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/cursos_ima_2"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:background="@drawable/efecto_boton_c2"
+                            android:onClick="boton2" />
+
+                        <TextView
+                            android:id="@+id/curso_nombre_2"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/degradado"
+                            android:gravity="center_horizontal"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/codigoC2"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/degradado"
+                            android:gravity="center_horizontal"
+                            android:textSize="16sp"
+                            android:textStyle="italic" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="7dp"
+                        android:layout_weight="2"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/cursos_ima_3"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:background="@drawable/efecto_boton_c3"
+                            android:onClick="boton3" />
+
+                        <TextView
+                            android:id="@+id/curso_nombre_3"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/degradado"
+                            android:gravity="center_horizontal"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/codigoC3"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/degradado"
+                            android:gravity="center_horizontal"
+                            android:textSize="16sp"
+                            android:textStyle="italic" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="7dp"
+                        android:layout_weight="2"
+                        android:orientation="vertical">
+
+                        <ImageButton
+                            android:id="@+id/curso_ima_4"
+                            android:layout_width="148dp"
+                            android:layout_height="143dp"
+                            android:background="@drawable/agregar"
+                            android:onClick="boton4" />
+
+                        <TextView
+                            android:id="@+id/curso_nombre_4"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/degradado"
+                            android:gravity="center_horizontal"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/codigoC4"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/degradado"
+                            android:gravity="center_horizontal"
+                            android:text=""
+                            android:textSize="16sp"
+                            android:textStyle="italic" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="7dp"
+                        android:layout_weight="2"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/c_nuevo2"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:background="@drawable/efecto_boton_agregar"
+                            android:onClick="boton5" />
+
+                        <TextView
+                            android:id="@+id/curso_nombre_5"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/degradado"
+                            android:gravity="center_horizontal"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/codigo_C5"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/degradado"
+                            android:gravity="center_horizontal"
+                            android:text=""
+                            android:textSize="16sp"
+                            android:textStyle="italic" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="7dp"
+                        android:layout_weight="2"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/c_nuevo3"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:background="@drawable/efecto_boton_agregar"
+                            android:onClick="boton6" />
+
+                        <TextView
+                            android:id="@+id/curso_nombre_6"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/degradado"
+                            android:gravity="center_horizontal"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/codigoC6"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/degradado"
+                            android:gravity="center_horizontal"
+                            android:text=""
+                            android:textSize="16sp"
+                            android:textStyle="italic" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="7dp"
+                        android:layout_weight="2"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/c_nuevo4"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:background="@drawable/efecto_boton_agregar"
+                            android:onClick="boton7" />
+
+                        <TextView
+                            android:id="@+id/curso_nombre_7"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/degradado"
+                            android:gravity="center_horizontal"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/codigoC7"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/degradado"
+                            android:gravity="center_horizontal"
+                            android:text=""
+                            android:textSize="16sp"
+                            android:textStyle="italic" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="7dp"
+                        android:layout_weight="2"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/c_nuevo5"
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:background="@drawable/efecto_boton_agregar"
+                            android:onClick="boton8" />
+
+                        <TextView
+                            android:id="@+id/curso_nombre_8"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/degradado"
+                            android:gravity="center_horizontal"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/codigoC8"
+                            android:layout_width="150dp"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/degradado"
+                            android:gravity="center_horizontal"
+                            android:text=""
+                            android:textSize="16sp"
+                            android:textStyle="italic" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar4"
+        android:layout_width="match_parent"
+        android:layout_height="63dp"
+        android:background="@drawable/degradado"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cursos"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toolbar4" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
