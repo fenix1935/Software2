@@ -18,6 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
+        android:id="@+id/listaIdeas"
         android:layout_width="333dp"
         android:layout_height="390dp"
         android:background="@drawable/borde_verde"
@@ -49,7 +50,7 @@
         android:textColor="#6ADB8C"
         android:textSize="32sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/_dynamic"
+        app:layout_constraintBottom_toTopOf="@+id/listaIdeas"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"

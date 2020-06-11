@@ -31,6 +31,8 @@ import java.util.Map;
 public class PresentadorProblematica extends AppCompatActivity{
     private Button btn;
     TextView prob;
+    TextView urii;
+    TextView textomio;
     String h;
     EditText texto;
     private String problem;
@@ -39,11 +41,13 @@ public class PresentadorProblematica extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.problematica);
+        setContentView(R.layout.activity_problematica_estudiante);
         h = AsignacionTema.poss;
-        prob = (TextView) findViewById(R.id.TxVMostrarProblematica);
-        btn = (Button) findViewById(R.id.buttonProblematica);
-        texto=(EditText) findViewById(R.id.ETxProblematica);
+        prob = (TextView) findViewById(R.id.textView17);
+        urii = (TextView) findViewById(R.id.textView18);
+        textomio= (TextView)findViewById(R.id.textView20);
+        btn = (Button) findViewById(R.id.buttonProblema);
+        texto=(EditText) findViewById(R.id.editTextProblema);
         VerificarEst();
 
         prob.setText(problem);
@@ -51,9 +55,12 @@ public class PresentadorProblematica extends AppCompatActivity{
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(PresentadorProblematica.this, PresentadorIdeas.class);
-                startActivity(intent);
+                //Intent intent = new Intent(PresentadorProblematica.this, PresentadorIdeas.class);
+                //startActivity(intent);
                 //Toast.makeText(PresentadorProblematica.this, h, Toast.LENGTH_SHORT).show();
+                //Subir();
+                textomio.setText(texto.getText().toString());
+                texto.setText("");
                 Subir();
             }
         });
@@ -74,7 +81,8 @@ public class PresentadorProblematica extends AppCompatActivity{
                             try {
                                 problem= response.getString("problematica");
                                 link =response.getString("url");
-                                prob.setText(problem+"\nURL: "+link);
+                                prob.setText(problem);
+                                urii.setText(link);
 
                                 Toast.makeText(PresentadorProblematica.this, link, Toast.LENGTH_SHORT).show();
 
@@ -89,7 +97,7 @@ public class PresentadorProblematica extends AppCompatActivity{
                     });
         }
 public void Subir(){
-        String texti= texto.getText().toString();
+        String texti= textomio.getText().toString();
     Map<String,String> datos = new HashMap<>();
     datos.put("problem", texti);
     datos.put("num1", AsignacionGrupo.numG);
