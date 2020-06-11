@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
-        android:id="@+id/listaIdeas"
+        android:id="@+id/listaIdeas2"
         android:layout_width="333dp"
         android:layout_height="390dp"
         android:background="@drawable/borde_verde"
@@ -48,7 +48,7 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ideas"
+        android:text="Fase 2"
         android:textAlignment="center"
         android:textColor="#6ADB8C"
         android:textSize="32sp"
@@ -61,7 +61,7 @@
         app:layout_constraintVertical_bias="0.109" />
 
     <EditText
-        android:id="@+id/subirIdea"
+        android:id="@+id/subirIdea2"
         android:layout_width="221dp"
         android:layout_height="37dp"
         android:background="@drawable/borde_verde"
@@ -75,11 +75,11 @@
         app:layout_constraintVertical_bias="0.802" />
 
     <Button
-        android:id="@+id/buttonIdeasAgregar"
+        android:id="@+id/buttonIdeasAgregar2"
         android:layout_width="98dp"
         android:layout_height="36dp"
         android:background="@drawable/btn_verde"
-        android:onClick="botonidea"
+        android:onClick="botonidea2"
         android:text="Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

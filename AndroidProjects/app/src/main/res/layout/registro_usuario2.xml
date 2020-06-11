@@ -142,14 +142,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/toolbar"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.484" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/registro_hecho"
         android:layout_width="93dp"
         android:layout_height="43dp"
         android:background="@drawable/btn_registro_hecho"
-        android:onClick="botonRegistrar"
         android:text="Hecho"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"

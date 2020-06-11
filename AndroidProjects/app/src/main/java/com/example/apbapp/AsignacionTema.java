@@ -147,7 +147,6 @@ public class AsignacionTema extends AppCompatActivity {
                         Toast.makeText(AsignacionTema.this, "Error: " + anError.getErrorDetail(), Toast.LENGTH_SHORT).show();
                     }
                 });
-
     }
 
     public void elegir(){

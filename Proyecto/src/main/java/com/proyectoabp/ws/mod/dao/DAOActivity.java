@@ -73,6 +73,90 @@ public class DAOActivity {
 		}
 		return h;
 	}
+	public String GetProblemaAll(VOProblema vo) {
+		String h=null;
+		Gson gson= new Gson();
+		ArrayList<VOProblema> grupos= new ArrayList<VOProblema>();
+		PreparedStatement preparedStmt = null;
+		String query = "select * from problema";
+		try {
+			Connection connection = Conexion.getConenction();
+			preparedStmt = connection.prepareStatement(query);
+			//preparedStmt.setString(1, vo.getProblem());
+			//preparedStmt.setString(1, vo.getNum1());
+			ResultSet rs = preparedStmt.executeQuery();
+			String code=null;
+			String est= null;
+			String nombre = null;
+			String profe = null;
+			while (rs.next()) {
+				code=rs.getString("problem");
+				est= rs.getString("NumG");
+				grupos.add(new VOProblema(code, est));
+			}
+			h= gson.toJson(grupos);
+			connection.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return h;
+	}
+	public String GetHipotesisAll(VOProblema vo) {
+		String h=null;
+		Gson gson= new Gson();
+		ArrayList<VOProblema> grupos= new ArrayList<VOProblema>();
+		PreparedStatement preparedStmt = null;
+		String query = "select * from hipotesis";
+		try {
+			Connection connection = Conexion.getConenction();
+			preparedStmt = connection.prepareStatement(query);
+			//preparedStmt.setString(1, vo.getProblem());
+			//preparedStmt.setString(1, vo.getNum1());
+			ResultSet rs = preparedStmt.executeQuery();
+			String code=null;
+			String est= null;
+			String nombre = null;
+			String profe = null;
+			while (rs.next()) {
+				code=rs.getString("hipo");
+				est= rs.getString("NumG");
+				grupos.add(new VOProblema(code, est));
+			}
+			h= gson.toJson(grupos);
+			connection.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return h;
+	}
+	public String GetRespuestaAll(VOProblema vo) {
+		String h=null;
+		Gson gson= new Gson();
+		ArrayList<VOProblema> grupos= new ArrayList<VOProblema>();
+		PreparedStatement preparedStmt = null;
+		String query = "select * from respuesta";
+		try {
+			Connection connection = Conexion.getConenction();
+			preparedStmt = connection.prepareStatement(query);
+			//preparedStmt.setString(1, vo.getProblem());
+			//preparedStmt.setString(1, vo.getNum1());
+			ResultSet rs = preparedStmt.executeQuery();
+			String code=null;
+			String est= null;
+			String nombre = null;
+			String profe = null;
+			while (rs.next()) {
+				code=rs.getString("hipo");
+				est= rs.getString("NumG");
+				grupos.add(new VOProblema(code, est));
+			}
+			h= gson.toJson(grupos);
+			connection.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return h;
+	}
 	// IDEAS ///////////////////////
 	public boolean SubirIdea(VOIdeas vo)  throws SQLException{
 		int result = 0;

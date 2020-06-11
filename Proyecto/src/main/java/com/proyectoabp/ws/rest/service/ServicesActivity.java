@@ -59,7 +59,54 @@ public class ServicesActivity {
 		}
         return Response.status(Response.Status.CREATED).entity("{\"Status\": \"Error\"}").build();
     }
-	
+	@POST
+    @Path("/ProblemaGetAll")
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
+    public Response sesion13(VOProblema vo) {
+		//System.out.println(vo.getProfesorsito());
+        DAOActivity dao = new DAOActivity();        
+        try {        	
+				String aux = (String) dao.GetProblemaAll(vo);
+				return Response.status(Response.Status.CREATED).entity(aux).build();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+        return Response.status(Response.Status.CREATED).entity("{\"Status\": \"Error\"}").build();
+    }
+	@POST
+    @Path("/HipotesisGetAll")
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
+    public Response sesion132(VOProblema vo) {
+		//System.out.println(vo.getProfesorsito());
+        DAOActivity dao = new DAOActivity();        
+        try {        	
+				String aux = (String) dao.GetHipotesisAll(vo);
+				return Response.status(Response.Status.CREATED).entity(aux).build();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+        return Response.status(Response.Status.CREATED).entity("{\"Status\": \"Error\"}").build();
+    }
+	@POST
+    @Path("/RespuestaGetAll")
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
+    public Response sesion134(VOProblema vo) {
+		//System.out.println(vo.getProfesorsito());
+        DAOActivity dao = new DAOActivity();        
+        try {        	
+				String aux = (String) dao.GetRespuestaAll(vo);
+				return Response.status(Response.Status.CREATED).entity(aux).build();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+        return Response.status(Response.Status.CREATED).entity("{\"Status\": \"Error\"}").build();
+    }
 	// IDEAS
 	
 	@POST

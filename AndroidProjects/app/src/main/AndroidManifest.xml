@@ -15,7 +15,7 @@
         <activity android:name=".PresentadorIdeas2"/>
         <activity android:name=".CrearTema"/>
         <activity android:name=".Registro"/>
-        <activity android:name=".links"/>
+        <activity android:name=".RespuestaFinal"/>
         <activity android:name=".PresentadorProblematica"/>
         <activity android:name=".PresentadorPalabras"/>
         <activity android:name=".PresentadorIdeas"/>
@@ -30,7 +30,7 @@
         <activity android:name=".CrearCurso"/>
         <activity android:name=".Evaluacion"/>
         <activity android:name=".Lobby"/>
-        <activity android:name=".PrincipalEstudiantes"/>
+        <activity android:name=".VerRespuestas"/>
         <activity android:name=".PrincipalProfesor"/>
         <activity android:name=".MainActivity">
             <intent-filter>
