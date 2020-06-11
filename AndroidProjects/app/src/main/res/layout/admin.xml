@@ -8,16 +8,26 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/textView6"
+        android:layout_width="278dp"
+        android:layout_height="51dp"
+        android:text="PROBLEMÁTICA"
+        android:textSize="36sp"
+        tools:layout_editor_absoluteX="72dp"
+        tools:layout_editor_absoluteY="193dp" />
+
+    <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="66dp"
+        android:layout_marginTop="64dp"
         android:text="Administrador"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="35sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.53"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,8 +35,7 @@
         android:id="@+id/botonReiniciarActividad"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="7dp"
-        android:layout_marginBottom="22dp"
+        android:layout_marginBottom="24dp"
         android:onClick="botonReiniciarActividad"
         android:text="Reiniciar actividad"
         app:layout_constraintBottom_toTopOf="@+id/botonCancerlarActividad"
@@ -36,21 +45,13 @@
         android:id="@+id/botonCancerlarActividad"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="45dp"
+        android:layout_marginBottom="44dp"
         android:onClick="botonCancerlarActividad"
         android:text="Cancerlar actividad"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.526"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="278dp"
-        android:layout_height="51dp"
-        android:text="PROBLEMÁTICA"
-        android:textSize="36sp"
-        tools:layout_editor_absoluteX="66dp"
-        tools:layout_editor_absoluteY="195dp" />
 
     <Button
         android:id="@+id/button2"
@@ -59,8 +60,9 @@
         android:text="SIGUIENTE"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.518"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.461" />
+        app:layout_constraintVertical_bias="0.457" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

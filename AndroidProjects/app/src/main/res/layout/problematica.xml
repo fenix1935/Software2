@@ -11,8 +11,8 @@
 
     <TextView
         android:id="@+id/TxVMostrarProblematica"
-        android:layout_width="308dp"
-        android:layout_height="99dp"
+        android:layout_width="307dp"
+        android:layout_height="128dp"
         android:layout_marginStart="50dp"
         android:layout_marginEnd="50dp"
         android:layout_marginBottom="50dp"
